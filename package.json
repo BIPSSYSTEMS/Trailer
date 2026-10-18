@@ -1,0 +1,35 @@
+{
+  "name": "bips-trailer",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "studio": "remotion studio",
+    "audio": "node scripts/make-audio.mjs",
+    "stills": "node scripts/render-stills.mjs",
+    "render:9x16": "remotion render Trailer9x16 out/bips-trailer-9x16.mp4",
+    "render:16x9": "remotion render Trailer16x9 out/bips-trailer-16x9.mp4",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@react-three/drei": "^10.7.9",
+    "@react-three/fiber": "^9.8.2",
+    "@react-three/postprocessing": "^3.2.0",
+    "@remotion/cli": "^4.0.536",
+    "@remotion/fonts": "^4.0.536",
+    "@remotion/motion-blur": "^4.0.536",
+    "@remotion/three": "^4.0.536",
+    "postprocessing": "^6.39.5",
+    "react": "19.2",
+    "react-dom": "19.2",
+    "remotion": "^4.0.536",
+    "three": "^0.186.1"
+  },
+  "devDependencies": {
+    "@types/react": "^19.3.0",
+    "@types/three": "^0.186.0",
+    "opentype.js": "^2.0.0",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2",
+    "world-atlas": "^2.0.2"
+  }
+}
