@@ -5,13 +5,14 @@ import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry.js';
 import fontJson from '../../public/fonts/inter-black.typeface.json';
 import { useTexture } from '../lib/textures';
 import { MATCAPS } from '../lib/materials';
+import { LOGO_METAL } from '../theme';
 
 const font = new FontLoader().parse(fontJson as never);
 
 /** Matcap or + bande de reflet qui balaie la face (uSweep de -1 à 2 = passage complet). */
 const sheenMaterial = (matcap: THREE.Texture) =>
   new THREE.ShaderMaterial({
-    uniforms: { uMatcap: { value: matcap }, uSweep: { value: -1 }, uBoost: { value: 1 } },
+    uniforms: { uMatcap: { value: matcap }, uSweep: { value: -1 }, uBoost: { value: 1 }, uTint: { value: new THREE.Color(1, 0.95, 0.8) } },
     vertexShader: /* glsl */ `
       varying vec3 vN;
       varying vec3 vView;
@@ -28,6 +29,7 @@ const sheenMaterial = (matcap: THREE.Texture) =>
       uniform sampler2D uMatcap;
       uniform float uSweep;
       uniform float uBoost;
+      uniform vec3 uTint;
       varying vec3 vN;
       varying vec3 vView;
       varying vec2 vP;
@@ -38,14 +40,14 @@ const sheenMaterial = (matcap: THREE.Texture) =>
         vec3 col = texture2D(uMatcap, uv).rgb * uBoost;
         float d = (vP.x * 0.18 + vP.y * 0.12) - uSweep;
         float band = exp(-d * d * 220.0) * 1.6 + exp(-d * d * 18.0) * 0.25;
-        col += vec3(1.0, 0.95, 0.8) * band;
+        col += uTint * band;
         gl_FragColor = vec4(col, 1.0);
         #include <colorspace_fragment>
       }
     `,
   });
 
-/** Mot extrudé en or (logo BIPS), centré sur son origine. */
+/** Mot extrudé en métal (logo BIPS, argent par défaut, voir LOGO_METAL), centré sur son origine. */
 export const Logo3D: React.FC<{
   word?: string;
   size?: number;
@@ -55,9 +57,11 @@ export const Logo3D: React.FC<{
   position?: [number, number, number];
   rotation?: [number, number, number];
   scale?: number;
-}> = ({ word = 'BIPS', size = 1.2, depth = 0.4, sweep = -1, boost = 1, position, rotation, scale = 1 }) => {
-  const gold = useTexture(MATCAPS.gold);
-  const satin = useTexture(MATCAPS.goldSatin);
+  metal?: 'gold' | 'silver';
+}> = ({ word = 'BIPS', size = 1.2, depth = 0.4, sweep = -1, boost = 1, position, rotation, scale = 1, metal = LOGO_METAL }) => {
+  const silver = metal === 'silver';
+  const gold = useTexture(silver ? MATCAPS.chrome : MATCAPS.gold);
+  const satin = useTexture(silver ? MATCAPS.chrome : MATCAPS.goldSatin);
   const geo = useMemo(() => {
     const g = new TextGeometry(word, {
       font,
@@ -75,7 +79,11 @@ export const Logo3D: React.FC<{
     return g;
   }, [word, size, depth]);
   const face = useMemo(() => (gold ? sheenMaterial(gold) : null), [gold]);
-  const side = useMemo(() => (satin ? new THREE.MeshMatcapMaterial({ matcap: satin, color: '#c8902a' }) : null), [satin]);
+  if (face) face.uniforms.uTint.value.set(silver ? '#f2f6ff' : '#fff2cc');
+  const side = useMemo(
+    () => (satin ? new THREE.MeshMatcapMaterial({ matcap: satin, color: silver ? '#7d8597' : '#c8902a' }) : null),
+    [satin, silver],
+  );
   if (!face || !side) return null;
   face.uniforms.uSweep.value = sweep;
   face.uniforms.uBoost.value = boost;

@@ -16,3 +16,6 @@ export const C = {
 } as const;
 
 export const FONT = 'BipsInter';
+
+/** Métal du logo BIPS 3D : 'silver' ou 'gold'. */
+export const LOGO_METAL: 'gold' | 'silver' = 'silver';
