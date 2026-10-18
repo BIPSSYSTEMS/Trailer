@@ -10,7 +10,7 @@ import { LOGO_METAL } from '../theme';
 const font = new FontLoader().parse(fontJson as never);
 
 /** Matcap or + bande de reflet qui balaie la face (uSweep de -1 à 2 = passage complet). */
-const sheenMaterial = (matcap: THREE.Texture) =>
+export const sheenMaterial = (matcap: THREE.Texture) =>
   new THREE.ShaderMaterial({
     uniforms: { uMatcap: { value: matcap }, uSweep: { value: -1 }, uBoost: { value: 1 }, uTint: { value: new THREE.Color(1, 0.95, 0.8) } },
     vertexShader: /* glsl */ `

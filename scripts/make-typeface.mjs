@@ -1,9 +1,10 @@
 // Convertit Inter Black en police « typeface » de three.js (pour le logo BIPS extrudé en 3D).
-// Usage : node scripts/make-typeface.mjs  → public/fonts/inter-black.typeface.json
+// Usage : node scripts/make-typeface.mjs [Inter-Black.otf] [inter-black]  → public/fonts/<nom>.typeface.json
 import fs from 'node:fs';
 import opentype from 'opentype.js';
 
-const font = opentype.parse(fs.readFileSync('public/fonts/Inter-Black.otf').buffer);
+const [src = 'Inter-Black.otf', name = 'inter-black'] = process.argv.slice(2);
+const font = opentype.parse(fs.readFileSync(`public/fonts/${src}`).buffer);
 const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789.,!?\'’-&ÉÈÊÀÂÔÛÇéèêàâôûç% ';
 const r = (n) => Math.round(n);
 const glyphs = {};
@@ -21,7 +22,7 @@ for (const ch of chars) {
 }
 const out = {
   glyphs,
-  familyName: 'Inter Black',
+  familyName: name,
   ascender: font.ascender,
   descender: font.descender,
   underlinePosition: font.tables.post.underlinePosition,
@@ -30,5 +31,5 @@ const out = {
   resolution: font.unitsPerEm,
   original_font_information: { format: 0, fontFamily: 'Inter', fontSubfamily: 'Black' },
 };
-fs.writeFileSync('public/fonts/inter-black.typeface.json', JSON.stringify(out));
+fs.writeFileSync(`public/fonts/${name}.typeface.json`, JSON.stringify(out));
 console.log('glyphes', Object.keys(glyphs).length);
