@@ -2,6 +2,7 @@ import { Billboard, Line } from '@react-three/drei';
 import React, { useMemo } from 'react';
 import { AbsoluteFill, useCurrentFrame, useVideoConfig } from 'remotion';
 import { Flash, Slam } from '../components/Kinetic';
+import { Finger } from '../components/Touch';
 import { Burst, GoldDust, Sprite } from '../components/props3d';
 import { Cam, Stage } from '../components/Stage';
 import { COPY } from '../copy';
@@ -211,7 +212,7 @@ const Choices: React.FC<{ f: number }> = ({ f }) => {
 
 export const S6Scenarios: React.FC = () => {
   const f = useCurrentFrame();
-  const { fps } = useVideoConfig();
+  const { fps, width, height } = useVideoConfig();
   const u = useUnit();
   const k = flashIndex(f);
   const p = crashProgress(f);
@@ -302,6 +303,17 @@ export const S6Scenarios: React.FC = () => {
       />
       <Slam text={COPY.scenarios.question} at={T.question} out={T.flashes[0] - 6} y={-0.3} size={96} />
       <Choices f={f} />
+      {/* Le doigt choisit la bonne réponse. */}
+      <Finger
+        size={96 * u}
+        keys={[
+          { f: T.choices[2] + 10, x: width * 0.78, y: height * 0.58 + 420 * u },
+          { f: T.pick - 3, x: width / 2 + 160 * u, y: height * 0.58 + 196 * u },
+          { f: T.pick, x: width / 2 + 160 * u, y: height * 0.58 + 196 * u, down: true },
+          { f: T.pick + 6, x: width / 2 + 160 * u, y: height * 0.58 + 196 * u, down: true },
+          { f: T.pick + 14, x: width / 2 + 220 * u, y: height * 0.58 + 300 * u },
+        ]}
+      />
       <Slam
         text={COPY.scenarios.reveal}
         at={T.bravo}

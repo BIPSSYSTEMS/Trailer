@@ -27,7 +27,15 @@ export const SILENCE: [number, number] = [S.finale + FINALE.dropBeats, S.finale 
 export const END_BEAT = TOTAL_BEATS + 2.2;
 
 /** Sections musicales : groove plein, demi-temps, tension, drop… */
-export const SECTIONS: { from: number; to: number; kick: 'none' | 'four' | 'half' | 'sparse'; hats: 'none' | 'off' | 'sixteenth'; clap: boolean; bass: boolean; pad: number }[] = [
+export const SECTIONS: {
+  from: number;
+  to: number;
+  kick: 'none' | 'four' | 'half' | 'sparse';
+  hats: 'none' | 'off' | 'sixteenth';
+  clap: boolean;
+  bass: boolean;
+  pad: number;
+}[] = [
   { from: 0, to: 2, kick: 'none', hats: 'none', clap: false, bass: false, pad: 0.3 },
   { from: 2, to: S.hook + 4, kick: 'sparse', hats: 'none', clap: false, bass: true, pad: 0.5 },
   { from: S.hook + 4, to: S.dialogues, kick: 'four', hats: 'off', clap: true, bass: true, pad: 0.7 },
@@ -66,6 +74,19 @@ export const CUES: Sfx[] = [
   { t: 'chime', b: S.path + 10.5, pitch: 1046 },
   { t: 'coins', b: S.path + 10.5 },
   { t: 'whoosh', b: S.path + 11.2, len: 0.8 },
+  // 3 bis. L'app au toucher : taps, glissés, achat
+  { t: 'whoosh', b: S.app, len: 0.4, up: true },
+  { t: 'click', b: S.app + 1 },
+  { t: 'chime', b: S.app + 1.1, pitch: 1175 },
+  { t: 'click', b: S.app + 2 },
+  { t: 'whoosh', b: S.app + 2.2, len: 0.3 },
+  ...range(2.75, 3.75, 0.125).map((b) => ({ t: 'tick' as const, b: S.app + b })),
+  { t: 'click', b: S.app + 4.25 },
+  { t: 'coins', b: S.app + 4.3 },
+  { t: 'chime', b: S.app + 4.3, pitch: 1568 },
+  { t: 'click', b: S.app + 5 },
+  { t: 'click', b: S.app + 5.75 },
+  { t: 'whoosh', b: S.app + 6.8, len: 0.5, up: true },
   // 4. Carrière
   ...[1, 2, 3, 4].flatMap((i) => [
     { t: 'whoosh' as const, b: S.career + i - 0.18, len: 0.3, up: true },
@@ -83,6 +104,7 @@ export const CUES: Sfx[] = [
   ...range(2.25, 5, 0.5).map((b) => ({ t: 'tick' as const, b: S.scenarios + b })),
   ...[3, 3.5, 4].map((b) => ({ t: 'pop' as const, b: S.scenarios + b, pitch: 450 })),
   { t: 'click', b: S.scenarios + 5 },
+  { t: 'pop', b: S.scenarios + 5.02, pitch: 900 },
   { t: 'impact', b: S.scenarios + 5.5, size: 1 },
   { t: 'chime', b: S.scenarios + 6, pitch: 988 },
   ...[7, 8, 9, 10].flatMap((b) => [
@@ -110,7 +132,12 @@ export const CUES: Sfx[] = [
   { t: 'click', b: S.bonus + 6.75 },
   { t: 'whoosh', b: S.bonus + 6.8, len: 0.4 },
   // 9. Drop et final
-  ...range(0, FINALE.dropBeats, 0.25).map((b, i) => ({ t: 'bip' as const, b: S.finale + b, pitch: [880, 1320, 1175, 1568][i % 4], gain: 0.45 })),
+  ...range(0, FINALE.dropBeats, 0.25).map((b, i) => ({
+    t: 'bip' as const,
+    b: S.finale + b,
+    pitch: [880, 1320, 1175, 1568][i % 4],
+    gain: 0.45,
+  })),
   { t: 'riser', b: S.finale + 2, len: 2 },
   { t: 'impact', b: SILENCE[1], size: 1.4 },
   { t: 'coins', b: SILENCE[1] + 0.1 },

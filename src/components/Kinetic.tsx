@@ -22,6 +22,8 @@ export const Slam: React.FC<{
   tracking?: number;
   align?: 'center' | 'left' | 'right';
   stroke?: boolean;
+  /** Largeur maximale du texte, en fraction de la largeur de l'image. */
+  maxWidth?: number;
 }> = ({
   text,
   at,
@@ -35,6 +37,7 @@ export const Slam: React.FC<{
   tracking = -0.03,
   align = 'center',
   stroke = false,
+  maxWidth = 0.9,
 }) => {
   const frame = useCurrentFrame();
   const { fps, width, height } = useVideoConfig();
@@ -55,7 +58,7 @@ export const Slam: React.FC<{
   const age = frame - at;
   const g = Math.max(0, 1 - age / 7) * 14 + (noise1(frame * 0.9, at) > 0.82 ? 6 : 0);
   const jx = g ? noise1(frame * 2.3, at + 1) * g * 0.6 : 0;
-  const fontSize = Math.min(size * u, (width * 0.9) / Math.max(1, text.length * 0.62));
+  const fontSize = Math.min(size * u, (width * maxWidth) / Math.max(1, text.length * 0.62));
   const common: React.CSSProperties = {
     fontFamily: FONT,
     fontWeight: weight,

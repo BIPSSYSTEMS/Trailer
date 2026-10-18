@@ -1,6 +1,6 @@
 # Trailer BIPS
 
-Trailer de lancement de l'app BIPS (≈ 42 s, 128 BPM), rendu image par image avec Remotion + React Three Fiber.
+Trailer de lancement de l'app BIPS (≈ 46 s, 128 BPM), rendu image par image avec Remotion + React Three Fiber.
 Tout est dérivé de `useCurrentFrame()` : aucune animation en temps réel, aléatoire seedé, rendu identique à chaque passe.
 
 ## Commandes
@@ -24,8 +24,9 @@ Le rendu 3D passe par WebGL logiciel (`swangle`, voir `remotion.config.ts`) : il
 | `src/copy.ts` | **Tous les textes** à l'écran (modifiables sans toucher aux scènes) |
 | `src/timing.ts` | BPM, durée de chaque scène en temps, offset de la piste |
 | `src/audio/cues.ts` | Partition des SFX et sections musicales (en temps) |
-| `src/theme.ts` | Palette (or, vert/rouge marché, bleu nuit) et police |
-| `src/scenes/S1Hook.tsx` … `S9Finale.tsx` | Une composition par scène (aussi rendables seules : `S1-hook`, …) |
+| `src/theme.ts` | Palette, police et métal du logo (`LOGO_METAL` : argent ou or) |
+| `src/scenes/S1Hook.tsx` … `S9Finale.tsx`, `SAppTouch.tsx` | Une composition par scène (aussi rendables seules : `S1-hook`, `S4-app`, …) |
+| `src/components/Touch.tsx` | Doigt animé (taps, glissés) pour les moments « app au toucher » |
 | `src/Trailer.tsx` | Composition maître (scènes bout à bout + audio), utilisée en 9:16 et 16:9 |
 
 ### Changer de musique

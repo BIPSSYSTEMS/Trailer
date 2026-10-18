@@ -9,11 +9,13 @@ import { S6Scenarios } from './S6Scenarios';
 import { S7Markets } from './S7Markets';
 import { S8Bonus } from './S8Bonus';
 import { S9Finale } from './S9Finale';
+import { SAppTouch } from './SAppTouch';
 
 export const SCENE_COMPONENTS: Partial<Record<SceneId, React.FC>> = {
   hook: S1Hook,
   logo: S2Logo,
   path: S3Path,
+  app: SAppTouch,
   career: S4Career,
   dialogues: S5Dialogues,
   scenarios: S6Scenarios,

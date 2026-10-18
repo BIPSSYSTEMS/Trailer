@@ -228,12 +228,20 @@ export const S9Finale: React.FC = () => {
           />
         </AbsoluteFill>
       )}
-      <Slam text={COPY.finale.tagline[0]} at={T.tagline} y={portrait ? 0.31 : 0.07} x={portrait ? 0 : -0.24} size={84} />
+      <Slam
+        text={COPY.finale.tagline[0]}
+        at={T.tagline}
+        y={portrait ? 0.31 : 0.07}
+        x={portrait ? 0 : -0.24}
+        size={84}
+        maxWidth={portrait ? 0.9 : 0.44}
+      />
       <Slam
         text={COPY.finale.tagline[1]}
         at={T.enjeu}
         y={portrait ? 0.365 : 0.17}
         x={portrait ? 0 : -0.24}
+        maxWidth={portrait ? 0.9 : 0.44}
         size={120}
         color={C.goldHot}
         glow="rgba(255,190,60,0.9)"

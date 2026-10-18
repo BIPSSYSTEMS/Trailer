@@ -20,6 +20,7 @@ export const SCENES = [
   { id: 'hook', beats: 6 },
   { id: 'logo', beats: 8 },
   { id: 'path', beats: 12 },
+  { id: 'app', beats: 8 },
   { id: 'career', beats: 12 },
   { id: 'dialogues', beats: 8 },
   { id: 'scenarios', beats: 12 },

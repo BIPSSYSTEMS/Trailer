@@ -2,6 +2,7 @@ import { CameraMotionBlur } from '@remotion/motion-blur';
 import React from 'react';
 import { AbsoluteFill, useCurrentFrame, useVideoConfig } from 'remotion';
 import { Flash, Slam } from '../components/Kinetic';
+import { Finger } from '../components/Touch';
 import { Burst, ContactBlob, Floor, GoldDust, Sprite } from '../components/props3d';
 import { Cam, Stage } from '../components/Stage';
 import { COPY } from '../copy';
@@ -347,6 +348,17 @@ const DayNight: React.FC<{ f: number }> = ({ f }) => {
           {night ? '☾' : '☀'}
         </div>
       </div>
+      {/* Le doigt fait glisser l'interrupteur. */}
+      <Finger
+        size={110 * u}
+        keys={[
+          { f: T.slide - 14, x: cx - sw.w / 2 + sw.h / 2, y: cy + 160 * u },
+          { f: T.slide - 4, x: cx - sw.w / 2 + sw.h / 2, y: cy },
+          { f: T.slide, x: cx - sw.w / 2 + sw.h / 2, y: cy, down: true },
+          { f: T.slide + 10, x: cx + sw.w / 2 - sw.h / 2, y: cy, down: true },
+          { f: T.slide + 16, x: cx + sw.w / 2 - sw.h / 2 + 40 * u, y: cy + 120 * u },
+        ]}
+      />
     </AbsoluteFill>
   );
 };

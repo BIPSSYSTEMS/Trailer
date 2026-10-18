@@ -10,6 +10,7 @@ export const COPY = {
     boss: 'BOSS',
     chapter: 'FIN DE CHAPITRE',
   },
+  app: ['TAPE.', 'GLISSE.', 'JOUE.'],
   career: {
     grades: ['STAGIAIRE', 'ANALYSTE', 'ASSOCIATE', 'VP', 'MD'],
     title: 'MONTE EN GRADE.',
@@ -48,7 +49,7 @@ export const COPY = {
     night: 'NUIT',
   },
   finale: {
-    tagline: ['LA FINANCE DE MARCHÉ.', 'EN JEU.'],
+    tagline: ['LES MARCHÉS N’ATTENDENT PAS.', 'TOI NON PLUS.'],
     soon: 'Bientôt sur iOS et Android',
   },
 } as const;
