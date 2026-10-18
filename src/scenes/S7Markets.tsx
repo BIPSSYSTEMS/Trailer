@@ -13,7 +13,7 @@ import { C, FONT } from '../theme';
 type V3 = [number, number, number];
 
 const T = {
-  call: 4,
+  call: 0,
   put: bf(1),
   trade: bf(0.4),
   collar: bf(2.5),
@@ -175,7 +175,7 @@ export const S7Markets: React.FC = () => {
   const f = useCurrentFrame();
   const { fps } = useVideoConfig();
 
-  const callP = tween(f, T.call, T.call + 30, 0, 1, EASE.out);
+  const callP = tween(f, T.call, T.call + 22, 0.25, 1, EASE.out);
   const putP = tween(f, T.put, T.put + 30, 0, 1, EASE.out);
   const toCollar = tween(f, T.collar, T.collar + 22, 0, 1, EASE.inOut);
   const flat = tween(f, T.flatten, T.map, 0, 1, EASE.inOut);
@@ -199,7 +199,7 @@ export const S7Markets: React.FC = () => {
       <Stage cam={cam} textures={S7_TEXTURES} bloom={1.2} fog={[8, 30]} motionBlur={0.35}>
         {f < T.flatten + 2 && (
           <>
-            <gridHelper args={[4, 10, '#22305e', '#141d3d']} rotation-x={Math.PI / 2} position-z={-0.3} />
+            <gridHelper args={[4, 10, '#3a52a0', '#1f2d5e']} rotation-x={Math.PI / 2} position-z={-0.3} />
             {toCollar < 1 && (
               <>
                 <Line points={payoff(call, callP)} color={C.green} lineWidth={7} toneMapped={false} transparent opacity={1 - toCollar} />
@@ -294,6 +294,7 @@ export const S7Markets: React.FC = () => {
       <Slam text={COPY.markets.collar} at={T.collar + 12} out={T.flatten - 2} y={-0.2} size={60} tracking={0.3} weight={800} />
       <Slam text={COPY.markets.title[2]} at={T.comprends} out={T.end - 4} y={0.32} size={150} />
       <Flash at={T.globe} len={8} peak={0.7} />
+      <Flash at={0} len={7} color={C.green} peak={0.35} />
     </AbsoluteFill>
   );
 };
