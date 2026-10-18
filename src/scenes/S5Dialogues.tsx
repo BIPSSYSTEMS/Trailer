@@ -10,7 +10,7 @@ import { C, FONT } from '../theme';
 
 type Who = 'me' | 'buddy' | 'director' | 'client';
 const portrait = (who: Who, mood: string) =>
-  who === 'me' ? `assets/portraits/man-suit-${mood}.png` : `assets/portraits/npc/${who}-${mood}.png`;
+  who === 'me' ? `assets/portraits/man-three-piece-${mood}.png` : `assets/portraits/npc/${who}-${mood}.png`;
 
 /** Expressions du bandeau de portraits, temps par temps (elles changent en rythme). */
 const MOODS: Record<Who, [number, string][]> = {
@@ -135,7 +135,9 @@ const Thread: React.FC = () => {
       <div
         style={{
           width: panelW,
-          transform: `translateY(${-exit * height * 1.3}px) rotateY(${tiltY}deg) rotateX(${8 + exit * 30}deg) scale(${1 + exit * 0.3})`,
+          transform: `rotateY(${tiltY * (1 - exit)}deg) rotateX(${8 * (1 - exit)}deg) scale(${1 + exit * exit * 5}) translateY(${exit * 8}%)`,
+          opacity: 1 - Math.max(0, exit - 0.6) / 0.4,
+          filter: exit > 0.3 ? `blur(${(exit - 0.3) * 30}px)` : undefined,
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
@@ -220,7 +222,10 @@ const Thread: React.FC = () => {
 
 export const S5Dialogues: React.FC = () => {
   const f = useCurrentFrame();
-  const flashIn = interpolate(f, [0, 6], [0.6, 0], { extrapolateRight: 'clamp' });
+  const u = useUnit();
+  const { width, height } = useVideoConfig();
+  // Ouverture : le visage du MD (fin de la carrière) rétrécit et devient son portrait.
+  const open = tween(f, 0, 16, 0, 1, EASE.inOut);
   return (
     <AbsoluteFill style={{ background: C.bg }}>
       <Backdrop f={f} />
@@ -232,8 +237,27 @@ export const S5Dialogues: React.FC = () => {
       ) : (
         <Thread />
       )}
-      <AbsoluteFill style={{ background: '#fff', opacity: flashIn }} />
-      <Flash at={T.end - 3} len={3} peak={0.8} />
+      {open < 1 && (
+        <AbsoluteFill style={{ alignItems: 'center', justifyContent: 'center', pointerEvents: 'none' }}>
+          <div
+            style={{
+              width: Math.hypot(width, height) * lerp(1, 0.1, open),
+              height: Math.hypot(width, height) * lerp(1, 0.1, open),
+              borderRadius: '50%',
+              overflow: 'hidden',
+              border: `${lerp(0, 6, open) * u}px solid ${C.goldHot}`,
+              opacity: 1 - Math.max(0, open - 0.7) / 0.3,
+              transform: `translate(${-open * width * 0.25}px, ${-open * height * 0.18}px)`,
+              background: '#1d2a55',
+            }}
+          >
+            <Img
+              src={staticFile(portrait('me', 'neutral'))}
+              style={{ width: '100%', height: '100%', objectFit: 'cover', transform: 'scale(1.15) translateY(6%)' }}
+            />
+          </div>
+        </AbsoluteFill>
+      )}
     </AbsoluteFill>
   );
 };

@@ -104,7 +104,12 @@ export const pulsePoints = (x0: number, x1: number, spikeX: number, amp: number,
     const y = amp * (1.0 * g(0, 0.05) - 0.38 * g(0.11, 0.045) - 0.12 * g(-0.12, 0.04) + 0.12 * g(-0.45, 0.1) + 0.18 * g(0.42, 0.12));
     pts.push([x, y, 0]);
   }
-  return pts.length > 1 ? pts : [[x0, 0, 0], [x0 + 0.01, 0, 0]];
+  return pts.length > 1
+    ? pts
+    : [
+        [x0, 0, 0],
+        [x0 + 0.01, 0, 0],
+      ];
 };
 
 export const Pulse: React.FC<{ pts: V3[]; color?: string; width?: number; z?: number }> = ({ pts, color = C.green, width = 6, z = 0 }) => (
@@ -124,7 +129,12 @@ export const Pulse: React.FC<{ pts: V3[]; color?: string; width?: number; z?: nu
  * A. Le « bip » intégré : le pic du pouls forme le I de BIPS. La ligne court derrière les lettres
  * et ne se voit que dans les espaces, comme un électrocardiogramme qui écrit le nom.
  */
-export const LogoPulse: React.FC<{ size?: number; p?: number; sweep?: number; reveal?: (i: number) => number }> = ({ size = 1, p = 1, sweep, reveal }) => {
+export const LogoPulse: React.FC<{ size?: number; p?: number; sweep?: number; reveal?: (i: number) => number }> = ({
+  size = 1,
+  p = 1,
+  sweep,
+  reveal,
+}) => {
   const m = useMemo(() => wordMetrics('BIPS', 'black', size, 0.1), [size]);
   const spikeX = m.centers[1];
   const pts = useMemo(() => {
@@ -159,7 +169,13 @@ export const LogoMonogram: React.FC<{ size?: number; p?: number; sweep?: number;
   return (
     <group>
       <group position-y={0.42 * size} scale={tile}>
-        <RoundedBox args={[T + 0.08 * size, T + 0.08 * size, 0.22 * size]} radius={0.38 * size} smoothness={6} material={chrome} position-z={-0.05 * size} />
+        <RoundedBox
+          args={[T + 0.08 * size, T + 0.08 * size, 0.22 * size]}
+          radius={0.38 * size}
+          smoothness={6}
+          material={chrome}
+          position-z={-0.05 * size}
+        />
         <RoundedBox args={[T, T, 0.26 * size]} radius={0.34 * size} smoothness={6} material={navy} />
         <group position-z={0.2 * size}>
           <Wordmark word="B" size={1.05 * size} depth={0.18 * size} sweep={sweep} boost={1.5} />
@@ -176,7 +192,12 @@ export const LogoMonogram: React.FC<{ size?: number; p?: number; sweep?: number;
 };
 
 /** C. Wordmark premium : graisse plus fine, lettres très espacées, filets chromés et liseré or. */
-export const LogoPremium: React.FC<{ size?: number; p?: number; sweep?: number; reveal?: (i: number) => number }> = ({ size = 1, p = 1, sweep, reveal }) => {
+export const LogoPremium: React.FC<{ size?: number; p?: number; sweep?: number; reveal?: (i: number) => number }> = ({
+  size = 1,
+  p = 1,
+  sweep,
+  reveal,
+}) => {
   const chrome = useMatcap('chrome');
   const gold = useMatcap('gold');
   const m = useMemo(() => wordMetrics('BIPS', 'semibold', size, 0.32), [size]);

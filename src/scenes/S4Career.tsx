@@ -29,11 +29,13 @@ const spinAngle = (f: number, at: number) => tween(f, at - 5, at - 5 + SPIN, 0, 
 const camBase = (f: number): Cam => {
   const c = camPath(
     [
-      { f: 0, pos: [-3.4, 1.4, 6.8], target: [-4.5, 1.7, 0], fov: 42 },
-      { f: 12, pos: [-1.6, 1.0, 6.6], target: [0, 1.8, 0], fov: 40, ease: EASE.out },
-      { f: T.split - 10, pos: [1.2, 0.7, 5.6], target: [0, 1.85, 0], fov: 40, ease: EASE.linear },
+      { f: 0, pos: [-1.2, 2.6, 6.8], target: [-0.6, 11, 1], fov: 46 },
+      { f: 16, pos: [-2.7, 1.0, 6.2], target: [0, 1.8, 0], fov: 40, ease: EASE.out },
+      { f: T.split - 10, pos: [2.4, 0.6, 5.4], target: [0, 1.85, 0], fov: 40, ease: EASE.linear },
       { f: T.split + 10, pos: [0, 1.2, 8.4], target: [0, 1.75, 0], fov: 40, ease: EASE.out },
-      { f: T.end, pos: [0, 1.0, 7.4], target: [0, 1.8, 0], fov: 40, ease: EASE.linear },
+      { f: T.end - 20, pos: [-0.3, 1.2, 7.6], target: [-0.2, 1.9, 0], fov: 40, ease: EASE.linear },
+      // Plongée dans le visage du MD : raccord avec son portrait dans les dialogues.
+      { f: T.end, pos: [-0.95, 2.98, 0.75], target: [-0.95, 2.98, 0], fov: 40, ease: EASE.in },
     ],
     f,
   );
@@ -172,11 +174,10 @@ export const S4Career: React.FC = () => {
           glow="rgba(255,190,60,1)"
         />
       ))}
-      <Slam text={COPY.career.title} at={T.title} out={T.end - 6} y={0.36} size={120} />
+      <Slam text={COPY.career.title} at={T.title} out={T.end - 18} y={0.36} size={120} variant="stagger" />
       {T.changes.map((at) => (
-        <Flash key={at} at={at} len={6} peak={0.65} />
+        <Flash key={at} at={at} len={6} peak={0.4} />
       ))}
-      <Flash at={T.split} len={8} peak={0.5} />
     </AbsoluteFill>
   );
 };

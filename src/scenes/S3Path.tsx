@@ -319,12 +319,12 @@ export const S3Path: React.FC = () => {
       </Stage>
       <HealthNote f={f} />
       <Slam text={COPY.path.boss} at={T.boss} out={T.title - 4} y={0.3} size={190} glow="rgba(255,40,60,1)" />
-      <Slam text={COPY.path.chapter} at={T.boss + 6} out={T.title - 4} y={0.37} size={52} weight={800} tracking={0.12} />
-      <Slam text={COPY.path.title} at={T.title} out={T.whip} y={0.3} size={190} />
+      <Slam text={COPY.path.chapter} at={T.boss + 6} out={T.title - 4} y={0.37} size={52} weight={800} tracking={0.12} variant="mask" />
+      <Slam text={COPY.path.title} at={T.title} out={T.whip} y={0.3} size={190} variant="split" />
       {T.hits.map((h) => (
-        <Flash key={h} at={h} len={6} color={C.red} peak={0.35} />
+        <Flash key={h} at={h} len={6} color={C.red} peak={0.18} />
       ))}
-      <Flash at={T.win} len={8} peak={0.7} />
+      <Flash at={T.win} len={8} peak={0.35} />
     </AbsoluteFill>
   );
 };

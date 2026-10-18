@@ -300,8 +300,9 @@ export const S6Scenarios: React.FC = () => {
         size={330}
         color={C.goldHot}
         glow="rgba(255,190,60,0.9)"
+        variant="mask"
       />
-      <Slam text={COPY.scenarios.question} at={T.question} out={T.flashes[0] - 6} y={-0.3} size={96} />
+      <Slam text={COPY.scenarios.question} at={T.question} out={T.flashes[0] - 6} y={-0.3} size={96} variant="stagger" />
       <Choices f={f} />
       {/* Le doigt choisit la bonne réponse. */}
       <Finger
@@ -324,13 +325,21 @@ export const S6Scenarios: React.FC = () => {
         glow="rgba(34,224,122,0.9)"
       />
       {FLASHES.map((fl2, i) => (
-        <Slam key={fl2.label} text={fl2.label} at={T.flashes[i] + 1} out={(T.flashes[i + 1] ?? T.title) - 6} y={-0.3} size={170} />
+        <Slam
+          key={fl2.label}
+          text={fl2.label}
+          at={T.flashes[i] + 1}
+          out={(T.flashes[i + 1] ?? T.title) - 6}
+          y={-0.3}
+          size={170}
+          variant="split"
+        />
       ))}
-      <Slam text={COPY.scenarios.title} at={T.title} out={T.end - 4} y={-0.3} size={120} glow="rgba(255,190,60,0.9)" />
+      <Slam text={COPY.scenarios.title} at={T.title} out={T.end - 4} y={-0.3} size={120} glow="rgba(255,190,60,0.9)" variant="mask" />
       <Flash at={T.reveal} len={8} color={C.red} peak={0.4} />
       <Flash at={T.pick} len={6} color={C.green} peak={0.25} />
       {T.flashes.map((a) => (
-        <Flash key={a} at={a} len={5} peak={0.85} />
+        <Flash key={a} at={a} len={5} peak={0.45} />
       ))}
       {/* Petit grain de « rediffusion » sur les flashs. */}
       {k >= 0 && (

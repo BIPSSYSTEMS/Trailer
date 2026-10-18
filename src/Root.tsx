@@ -9,7 +9,15 @@ export const Root: React.FC = () => (
   <>
     <Composition id="Trailer9x16" component={Trailer} width={1080} height={1920} fps={FPS} durationInFrames={TOTAL_FRAMES} />
     <Composition id="Trailer16x9" component={Trailer} width={1920} height={1080} fps={FPS} durationInFrames={TOTAL_FRAMES} />
-    <Composition id="LogoLab" component={LogoLab} width={1080} height={1080} fps={FPS} durationInFrames={180} defaultProps={{ concept: 'pulse' as const }} />
+    <Composition
+      id="LogoLab"
+      component={LogoLab}
+      width={1080}
+      height={1080}
+      fps={FPS}
+      durationInFrames={180}
+      defaultProps={{ concept: 'pulse' as const }}
+    />
     {SCENES.map((s, i) => {
       const C = SCENE_COMPONENTS[s.id];
       if (!C) return null;

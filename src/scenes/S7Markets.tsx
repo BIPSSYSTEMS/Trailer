@@ -48,6 +48,16 @@ const payoff = (fn: (x: number) => number, p: number, n = 90): V3[] => {
       ];
 };
 
+const tariffs = (x01: number) => (1 - x01 * 2.4 + (Math.floor(x01 * 9) % 2 ? 0.5 : -0.2) * (x01 > 0.15 ? 1 : 0)) * 0.5;
+const fromTariffs = (t: number): V3[] => {
+  const pts: V3[] = [];
+  for (let i = 0; i <= 90; i++) {
+    const x = X0 + ((X1 - X0) * i) / 90;
+    pts.push([x, lerp(tariffs(i / 90), call(x), t), 0]);
+  }
+  return pts;
+};
+
 // Route de la carte qui prolonge le collar : New York → Francfort.
 const ROUTE_A = hubMap('ny');
 const ROUTE_B = hubMap('frankfurt');
@@ -89,8 +99,9 @@ const camBase = (f: number): Cam => {
       f,
     );
   }
-  const k = tween(f, T.globe, T.end, 0, 1, EASE.out);
-  return { pos: [lerp(0.5, -0.6, k), lerp(1.2, 0.6, k), lerp(6.5, 8.2, k)], target: [0, 0, 0], fov: 44 };
+  const k = tween(f, T.globe, T.end - 16, 0, 1, EASE.out);
+  const dive = tween(f, T.end - 16, T.end, 0, 1, EASE.in);
+  return { pos: [lerp(0.5, -0.6, k), lerp(1.2, 0.6, k) - dive * 0.4, lerp(6.5, 8.2, k) - dive * 6.6], target: [0, 0, 0], fov: 44 };
 };
 const cam = (f: number) =>
   shake(
@@ -176,6 +187,8 @@ export const S7Markets: React.FC = () => {
   const { fps } = useVideoConfig();
 
   const callP = tween(f, T.call, T.call + 22, 0.25, 1, EASE.out);
+  // Raccord : la courbe en escalier des droits de douane (scène précédente) se redresse en payoff de call.
+  const morphIn = tween(f, 0, 18, 0, 1, EASE.inOut);
   const putP = tween(f, T.put, T.put + 30, 0, 1, EASE.out);
   const toCollar = tween(f, T.collar, T.collar + 22, 0, 1, EASE.inOut);
   const flat = tween(f, T.flatten, T.map, 0, 1, EASE.inOut);
@@ -202,7 +215,14 @@ export const S7Markets: React.FC = () => {
             <gridHelper args={[4, 10, '#3a52a0', '#1f2d5e']} rotation-x={Math.PI / 2} position-z={-0.3} />
             {toCollar < 1 && (
               <>
-                <Line points={payoff(call, callP)} color={C.green} lineWidth={7} toneMapped={false} transparent opacity={1 - toCollar} />
+                <Line
+                  points={morphIn < 1 ? fromTariffs(morphIn) : payoff(call, callP)}
+                  color={morphIn < 0.5 ? C.red : C.green}
+                  lineWidth={7}
+                  toneMapped={false}
+                  transparent
+                  opacity={1 - toCollar}
+                />
                 {f >= T.put && (
                   <Line points={payoff(put, putP)} color={C.red} lineWidth={7} toneMapped={false} transparent opacity={1 - toCollar} />
                 )}
@@ -281,7 +301,16 @@ export const S7Markets: React.FC = () => {
         <GoldDust frame={f} count={220} spread={[18, 10, 14]} center={[0, 2, -2]} />
       </Stage>
       <Greeks f={f} />
-      <Slam text={COPY.markets.title[0]} at={T.trade} out={T.couvre - 6} y={-0.3} size={170} color={C.green} glow="rgba(34,224,122,0.8)" />
+      <Slam
+        text={COPY.markets.title[0]}
+        at={T.trade}
+        out={T.couvre - 6}
+        y={-0.3}
+        size={170}
+        color={C.green}
+        glow="rgba(34,224,122,0.8)"
+        variant="split"
+      />
       <Slam
         text={COPY.markets.title[1]}
         at={T.couvre}
@@ -290,11 +319,20 @@ export const S7Markets: React.FC = () => {
         size={170}
         color={C.goldHot}
         glow="rgba(255,190,60,0.9)"
+        variant="stagger"
       />
-      <Slam text={COPY.markets.collar} at={T.collar + 12} out={T.flatten - 2} y={-0.2} size={60} tracking={0.3} weight={800} />
-      <Slam text={COPY.markets.title[2]} at={T.comprends} out={T.end - 4} y={0.32} size={150} />
-      <Flash at={T.globe} len={8} peak={0.7} />
-      <Flash at={0} len={7} color={C.green} peak={0.35} />
+      <Slam
+        text={COPY.markets.collar}
+        at={T.collar + 12}
+        out={T.flatten - 2}
+        y={-0.2}
+        size={60}
+        tracking={0.3}
+        weight={800}
+        variant="mask"
+      />
+      <Slam text={COPY.markets.title[2]} at={T.comprends} out={T.end - 16} y={0.32} size={150} variant="mask" />
+      <Flash at={T.globe} len={8} peak={0.3} />
     </AbsoluteFill>
   );
 };

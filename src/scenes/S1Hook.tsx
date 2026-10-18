@@ -129,7 +129,7 @@ export const S1Hook: React.FC = () => {
         )}
         <GoldDust frame={f} count={300} spread={[26, 14, 24]} center={[0, 2, -4]} />
       </Stage>
-      <Slam text={COPY.hook[0]} at={T.markets} out={T.coinLaunch + 14} y={-0.27} size={130} />
+      <Slam text={COPY.hook[0]} at={T.markets} out={T.coinLaunch + 14} y={-0.27} size={130} variant="stagger" />
       <Slam text={COPY.hook[1]} at={T.impact + 2} out={T.dive} y={0.29} size={200} glow="rgba(255,190,60,0.9)" />
       <Flash at={T.impact} len={12} />
       <Flash at={0} len={5} color={C.green} peak={0.25} />

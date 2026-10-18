@@ -30,7 +30,7 @@ const T = {
 const camBase = (f: number): Cam => {
   const k = tween(f, 0, T.interview, 0, 1, EASE.linear);
   const a = lerp(-0.45, 0.35, k);
-  const d = lerp(10.5, 6.2, tween(f, T.door, T.unlocked + 20, 0, 1, EASE.out));
+  const d = lerp(10.5, 6.2, tween(f, T.door, T.unlocked + 20, 0, 1, EASE.out)) - (1 - tween(f, 0, 18, 0, 1, EASE.out)) * 7.5;
   return { pos: [Math.sin(a) * d, lerp(1.6, 1.1, k), Math.cos(a) * d], target: [0, 0.9, 0], fov: 42 };
 };
 const cam = (f: number) => shake(camBase(f), f, f >= T.door ? 0.12 * Math.exp(-(f - T.door) / 8) : 0, 61);
@@ -267,6 +267,8 @@ const DayNight: React.FC<{ f: number }> = ({ f }) => {
   const { fps, width, height } = useVideoConfig();
   if (f < T.daynight) return null;
   const enter = tween(f, T.daynight, T.daynight + 10, 0, 1, EASE.out);
+  // Sortie : l'interface nuit est aspirée vers la caméra, le drop final enchaîne.
+  const zoomOut = tween(f, T.end - 12, T.end, 0, 1, EASE.in);
   const knob = springAt(f, fps, T.slide, { damping: 14, stiffness: 320, mass: 0.5 });
   const wipe = tween(f, T.slide + 2, T.slide + 18, 0, 1, EASE.in);
   const night = wipe > 0.5;
@@ -312,7 +314,13 @@ const DayNight: React.FC<{ f: number }> = ({ f }) => {
     </AbsoluteFill>
   );
   return (
-    <AbsoluteFill style={{ opacity: enter, transform: `scale(${lerp(1.15, 1, enter)})` }}>
+    <AbsoluteFill
+      style={{
+        opacity: enter,
+        transform: `scale(${lerp(1.15, 1, enter) * (1 + zoomOut * zoomOut * 3)})`,
+        filter: zoomOut > 0 ? `blur(${zoomOut * 18}px)` : undefined,
+      }}
+    >
       {ui(false)}
       <AbsoluteFill style={{ clipPath: `circle(${wipe * Math.hypot(width, height)}px at ${cx + sw.w / 4}px ${cy}px)` }}>
         {ui(true)}
@@ -376,7 +384,7 @@ export const S8Bonus: React.FC = () => {
         </Stage>
       )}
       <XpBar f={f} />
-      <Slam text={COPY.bonus.levelUp} at={T.full} out={T.door + 10} y={-0.28} size={92} glow="rgba(255,190,60,1)" />
+      <Slam text={COPY.bonus.levelUp} at={T.full} out={T.door + 10} y={-0.28} size={92} glow="rgba(255,190,60,1)" variant="stagger" />
       {f >= T.unlocked && f < T.interview && (
         <Slam
           text={COPY.bonus.unlocked}
@@ -396,8 +404,7 @@ export const S8Bonus: React.FC = () => {
         <Interview />
       )}
       <DayNight f={f} />
-      <Flash at={T.full} len={8} peak={0.5} />
-      <Flash at={T.door} len={6} peak={0.3} />
+      <Flash at={T.full} len={8} peak={0.3} />
       <Flash at={T.answer} len={6} color={C.gold} peak={0.4} />
     </AbsoluteFill>
   );

@@ -520,6 +520,7 @@ export const SAppTouch: React.FC = () => {
         size={130}
         color={C.goldHot}
         glow="rgba(255,190,60,0.9)"
+        variant="mask"
       />
       <Slam
         text={COPY.app[2]}
@@ -530,6 +531,7 @@ export const SAppTouch: React.FC = () => {
         size={130}
         color={C.green}
         glow="rgba(34,224,122,0.85)"
+        variant="split"
       />
       <Flash at={0} len={6} peak={0.5} />
       <AbsoluteFill

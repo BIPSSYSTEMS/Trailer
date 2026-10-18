@@ -235,6 +235,7 @@ export const S9Finale: React.FC = () => {
         x={portrait ? 0 : -0.24}
         size={84}
         maxWidth={portrait ? 0.9 : 0.44}
+        variant="stagger"
       />
       <Slam
         text={COPY.finale.tagline[1]}
@@ -266,7 +267,7 @@ export const S9Finale: React.FC = () => {
           </div>
         </AbsoluteFill>
       )}
-      {DROP.map((_, i) => (i % 4 === 0 ? <Flash key={i} at={Math.round(i * STEP)} len={4} peak={0.35} /> : null))}
+      {DROP.map((_, i) => (i % 4 === 0 ? <Flash key={i} at={Math.round(i * STEP)} len={4} peak={0.18} /> : null))}
       <Flash at={T.boom} len={14} />
     </AbsoluteFill>
   );
