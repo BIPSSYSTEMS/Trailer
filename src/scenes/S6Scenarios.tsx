@@ -51,7 +51,10 @@ const FLASHES = [
   { label: COPY.scenarios.flashes[2], shape: SHAPES.oil, icon: 'oil-rig', icon2: 'overflowing-barrel', tint: '#3a2a08' },
   { label: COPY.scenarios.flashes[3], shape: SHAPES.tariffs, icon: 'politician', icon2: 'scales', tint: '#123a2a' },
 ];
-export const S6_TEXTURES = [...new Set(FLASHES.flatMap((f) => [`assets/icons/${f.icon}.png`, `assets/icons/${f.icon2}.png`])), 'assets/icons/popcorn.png'];
+export const S6_TEXTURES = [
+  ...new Set(FLASHES.flatMap((f) => [`assets/icons/${f.icon}.png`, `assets/icons/${f.icon2}.png`])),
+  'assets/icons/popcorn.png',
+];
 
 const flashIndex = (f: number) => {
   let k = -1;
@@ -72,7 +75,11 @@ const camBase = (f: number): Cam => {
     const hx = (p - 0.5) * CURVE_W;
     const plunge = tween(f, T.reveal, T.reveal + 30, 0, 1, EASE.out);
     return {
-      pos: [lerp(-2.5, hx * 0.6 + 1.2, tween(f, 0, T.question, 0, 1, EASE.out)), lerp(0.8, -0.6, plunge), lerp(11, 9, tween(f, 0, T.question, 0, 1)) - plunge * 1.5],
+      pos: [
+        lerp(-2.5, hx * 0.6 + 1.2, tween(f, 0, T.question, 0, 1, EASE.out)),
+        lerp(0.8, -0.6, plunge),
+        lerp(11, 9, tween(f, 0, T.question, 0, 1)) - plunge * 1.5,
+      ],
       target: [hx * 0.5, lerp(0.2, -0.6, plunge), 0],
       fov: 42,
       roll: lerp(0, -0.1, plunge),
@@ -81,14 +88,31 @@ const camBase = (f: number): Cam => {
   // Chaque flash : un nouvel angle (coupe franche) et un léger travelling.
   const local = f - T.flashes[k];
   const angles: [V3, V3][] = [
-    [[-3.5, 1.5, 7.5], [3.2, 0.6, 8]],
-    [[3.8, -0.5, 7.5], [-2, 0.4, 8.5]],
-    [[0, 3.5, 7], [-3, 1.2, 8]],
-    [[-2.8, -1.2, 7], [2.5, 0.5, 8]],
+    [
+      [-3.5, 1.5, 7.5],
+      [3.2, 0.6, 8],
+    ],
+    [
+      [3.8, -0.5, 7.5],
+      [-2, 0.4, 8.5],
+    ],
+    [
+      [0, 3.5, 7],
+      [-3, 1.2, 8],
+    ],
+    [
+      [-2.8, -1.2, 7],
+      [2.5, 0.5, 8],
+    ],
   ];
   const [a, b] = angles[k];
   const t = Math.min(1, local / bf(1));
-  return { pos: [lerp(a[0], b[0], t), lerp(a[1], b[1], t), lerp(a[2], b[2], t)], target: [0, 0, 0], fov: 46, roll: (k % 2 ? 1 : -1) * 0.08 };
+  return {
+    pos: [lerp(a[0], b[0], t), lerp(a[1], b[1], t), lerp(a[2], b[2], t)],
+    target: [0, 0, 0],
+    fov: 46,
+    roll: (k % 2 ? 1 : -1) * 0.08,
+  };
 };
 const cam = (f: number) => {
   const hits = [T.reveal, ...T.flashes].reduce((a, h) => a + (f >= h ? 0.3 * Math.exp(-(f - h) / 7) : 0), 0);
@@ -101,7 +125,14 @@ const Curve: React.FC<{ fn: (x: number) => number; p: number; color: string; wid
   return (
     <>
       <Line points={pts} color={color} lineWidth={width} toneMapped={false} />
-      <Line points={pts.map(([x, y, z]) => [x, y, z - 0.25] as V3)} color={color} lineWidth={width * 3} transparent opacity={0.12} toneMapped={false} />
+      <Line
+        points={pts.map(([x, y, z]) => [x, y, z - 0.25] as V3)}
+        color={color}
+        lineWidth={width * 3}
+        transparent
+        opacity={0.12}
+        toneMapped={false}
+      />
       <mesh position={head}>
         <sphereGeometry args={[0.11, 16, 16]} />
         <meshBasicMaterial color="#ffffff" toneMapped={false} />
@@ -156,7 +187,18 @@ const Choices: React.FC<{ f: number }> = ({ f }) => {
               gap: 24 * u,
             }}
           >
-            <span style={{ width: 64 * u, height: 64 * u, borderRadius: 16 * u, background: 'rgba(255,255,255,0.12)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 38 * u }}>
+            <span
+              style={{
+                width: 64 * u,
+                height: 64 * u,
+                borderRadius: 16 * u,
+                background: 'rgba(255,255,255,0.12)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                fontSize: 38 * u,
+              }}
+            >
               {'ABC'[i]}
             </span>
             {c}
@@ -181,7 +223,18 @@ export const S6Scenarios: React.FC = () => {
     <AbsoluteFill style={{ background: C.bg }}>
       <Stage cam={cam} textures={S6_TEXTURES} bloom={1.2} fog={[9, 30]}>
         {k < 0 && <Curve fn={SHAPES.crash2008} p={p} color={crashColor} />}
-        {k < 0 && f >= T.reveal && <Burst frame={f} at={T.reveal + 20} position={[CURVE_W / 2, SHAPES.crash2008(1), 0]} count={120} speed={8} color={C.red} life={36} seed={8} />}
+        {k < 0 && f >= T.reveal && (
+          <Burst
+            frame={f}
+            at={T.reveal + 20}
+            position={[CURVE_W / 2, SHAPES.crash2008(1), 0]}
+            count={120}
+            speed={8}
+            color={C.red}
+            life={36}
+            seed={8}
+          />
+        )}
         {fl && (
           <>
             <mesh position={[0, 0, -6]}>
@@ -190,10 +243,20 @@ export const S6Scenarios: React.FC = () => {
             </mesh>
             <Curve fn={fl.shape} p={tween(flLocal, 0, bf(0.7), 0.05, 1, EASE.out)} color={k === 2 ? C.goldHot : C.red} />
             <Billboard position={[k % 2 ? -1.3 : 1.3, 1.5, 0.8]}>
-              <Sprite src={`assets/icons/${fl.icon}.png`} scale={1.9 * springAt(flLocal, fps, 0, { damping: 10, stiffness: 220 })} shadow={false} emissive={0.1} />
+              <Sprite
+                src={`assets/icons/${fl.icon}.png`}
+                scale={1.9 * springAt(flLocal, fps, 0, { damping: 10, stiffness: 220 })}
+                shadow={false}
+                emissive={0.1}
+              />
             </Billboard>
             <Billboard position={[k % 2 ? 1.5 : -1.5, -1.4, 0.5]}>
-              <Sprite src={`assets/icons/${fl.icon2}.png`} scale={1.3 * springAt(flLocal, fps, 6, { damping: 10, stiffness: 220 })} shadow={false} emissive={0.1} />
+              <Sprite
+                src={`assets/icons/${fl.icon2}.png`}
+                scale={1.3 * springAt(flLocal, fps, 6, { damping: 10, stiffness: 220 })}
+                shadow={false}
+                emissive={0.1}
+              />
             </Billboard>
           </>
         )}
@@ -228,10 +291,26 @@ export const S6Scenarios: React.FC = () => {
           <span style={{ opacity: Math.floor(f / 8) % 2 }}>▍</span>
         </div>
       )}
-      <Slam text={COPY.scenarios.year} at={T.year} out={T.question - 6} y={-0.22} size={330} color={C.goldHot} glow="rgba(255,190,60,0.9)" />
+      <Slam
+        text={COPY.scenarios.year}
+        at={T.year}
+        out={T.question - 6}
+        y={-0.22}
+        size={330}
+        color={C.goldHot}
+        glow="rgba(255,190,60,0.9)"
+      />
       <Slam text={COPY.scenarios.question} at={T.question} out={T.flashes[0] - 6} y={-0.3} size={96} />
       <Choices f={f} />
-      <Slam text={COPY.scenarios.reveal} at={T.bravo} out={T.flashes[0] - 4} y={-0.15} size={150} color={C.green} glow="rgba(34,224,122,0.9)" />
+      <Slam
+        text={COPY.scenarios.reveal}
+        at={T.bravo}
+        out={T.flashes[0] - 4}
+        y={-0.15}
+        size={150}
+        color={C.green}
+        glow="rgba(34,224,122,0.9)"
+      />
       {FLASHES.map((fl2, i) => (
         <Slam key={fl2.label} text={fl2.label} at={T.flashes[i] + 1} out={(T.flashes[i + 1] ?? T.title) - 6} y={-0.3} size={170} />
       ))}
@@ -242,8 +321,14 @@ export const S6Scenarios: React.FC = () => {
         <Flash key={a} at={a} len={5} peak={0.85} />
       ))}
       {/* Petit grain de « rediffusion » sur les flashs. */}
-      {k >= 0 && <AbsoluteFill style={{ background: `repeating-linear-gradient(0deg, rgba(255,255,255,0.03) 0 ${2 * u}px, transparent ${2 * u}px ${6 * u}px)`, transform: `translateY(${noise1(f, 3) * 4}px)` }} />}
+      {k >= 0 && (
+        <AbsoluteFill
+          style={{
+            background: `repeating-linear-gradient(0deg, rgba(255,255,255,0.03) 0 ${2 * u}px, transparent ${2 * u}px ${6 * u}px)`,
+            transform: `translateY(${noise1(f, 3) * 4}px)`,
+          }}
+        />
+      )}
     </AbsoluteFill>
   );
 };
-

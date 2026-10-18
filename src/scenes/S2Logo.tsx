@@ -48,7 +48,8 @@ export const S2Logo: React.FC = () => {
   const spin = f * 0.02 + suck * suck * 9;
   const pop = springAt(f, fps, T.logo, { damping: 9, stiffness: 140, mass: 0.7 });
   const logoRotY = lerp(-0.9, 0, springAt(f, fps, T.logo, { damping: 16, stiffness: 60 })) + Math.sin(f * 0.03) * 0.04;
-  const sweep = f < T.sweep2 ? tween(f, T.sweep1, T.sweep1 + 30, -1.2, 1.4, EASE.inOut) : tween(f, T.sweep2, T.sweep2 + 26, -1.2, 1.4, EASE.inOut);
+  const sweep =
+    f < T.sweep2 ? tween(f, T.sweep1, T.sweep1 + 30, -1.2, 1.4, EASE.inOut) : tween(f, T.sweep2, T.sweep2 + 26, -1.2, 1.4, EASE.inOut);
   const coinK = tween(f, T.coinOut, T.end, 0, 1, EASE.in);
 
   return (
@@ -76,18 +77,38 @@ export const S2Logo: React.FC = () => {
             const a = -spin * 1.3 + (i / 10) * Math.PI * 2;
             const r = ringR * 1.45;
             return (
-              <Coin key={i} position={[Math.cos(a) * r, CENTER[1] + Math.cos(a * 3) * 0.8, Math.sin(a) * r]} rotation={[f * 0.08 + i, i, 0]} scale={lerp(0.32, 0.02, suck)} />
+              <Coin
+                key={i}
+                position={[Math.cos(a) * r, CENTER[1] + Math.cos(a * 3) * 0.8, Math.sin(a) * r]}
+                rotation={[f * 0.08 + i, i, 0]}
+                scale={lerp(0.32, 0.02, suck)}
+              />
             );
           })}
         {f >= T.logo && (
           <>
-            <Logo3D word={COPY.logo.word} size={0.95} depth={0.36} position={CENTER} rotation={[0, logoRotY, 0]} scale={pop} sweep={sweep} boost={1.3} />
+            <Logo3D
+              word={COPY.logo.word}
+              size={0.95}
+              depth={0.36}
+              position={CENTER}
+              rotation={[0, logoRotY, 0]}
+              scale={pop}
+              sweep={sweep}
+              boost={1.3}
+            />
             <Burst frame={f} at={T.logo} position={CENTER} count={320} speed={18} life={70} size={0.1} />
             <Shockwave frame={f} at={T.logo} position={[0, CENTER[1], -0.6]} radius={8} />
             <Shockwave frame={f} at={T.logo + 4} position={[0, -0.85, 0]} rotation={[-Math.PI / 2, 0, 0]} radius={10} life={30} />
           </>
         )}
-        {f >= T.coinOut && <Coin position={[lerp(1.2, 0, coinK), lerp(2.6, 2.4, coinK), lerp(-6, 1.6, coinK)]} rotation={[0, lerp(Math.PI * 3, 0, coinK), 0]} scale={0.9} />}
+        {f >= T.coinOut && (
+          <Coin
+            position={[lerp(1.2, 0, coinK), lerp(2.6, 2.4, coinK), lerp(-6, 1.6, coinK)]}
+            rotation={[0, lerp(Math.PI * 3, 0, coinK), 0]}
+            scale={0.9}
+          />
+        )}
         <GoldDust frame={f} count={350} spread={[24, 12, 24]} center={[0, 3, 0]} />
       </Stage>
       <Flash at={T.logo} len={10} />

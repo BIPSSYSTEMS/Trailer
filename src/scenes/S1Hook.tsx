@@ -91,7 +91,11 @@ export const S1Hook: React.FC = () => {
   };
   const settle = springAt(f, fps, T.impact, { damping: 14, stiffness: 120 });
   const coinPost = {
-    rot: [lerp(-0.5, 0, tween(f, T.impact, T.end, 0, 1)), lerp(Math.PI * 1.2, 0, settle) + Math.sin(f * 0.05) * 0.05, 0] as [number, number, number],
+    rot: [lerp(-0.5, 0, tween(f, T.impact, T.end, 0, 1)), lerp(Math.PI * 1.2, 0, settle) + Math.sin(f * 0.05) * 0.05, 0] as [
+      number,
+      number,
+      number,
+    ],
     scale: lerp(3, 1.45, settle),
   };
 

@@ -67,7 +67,10 @@ const camBase = (f: number): Cam => {
     const k = tween(f, T.whip, T.end, 0, 1, EASE.whip);
     const a = k * 1.4;
     const d: V3 = [c.target[0] - c.pos[0], c.target[1] - c.pos[1], c.target[2] - c.pos[2]];
-    c = { ...c, target: [c.pos[0] + d[0] * Math.cos(a) - d[2] * Math.sin(a), c.target[1], c.pos[2] + d[0] * Math.sin(a) + d[2] * Math.cos(a)] };
+    c = {
+      ...c,
+      target: [c.pos[0] + d[0] * Math.cos(a) - d[2] * Math.sin(a), c.target[1], c.pos[2] + d[0] * Math.sin(a) + d[2] * Math.cos(a)],
+    };
   }
   return c;
 };
@@ -109,7 +112,11 @@ const Bubble: React.FC<{ i: number; f: number; boss?: boolean }> = ({ i, f, boss
   const red = new THREE.MeshStandardMaterial({ color: C.redDeep, emissive: C.red, emissiveIntensity: 0.6, toneMapped: false });
   return (
     <group position={[p[0], p[1] + jump, p[2]]} scale={s}>
-      <mesh geometry={bubbleGeo} material={boss ? [red, red, red] : lit ? [gold, top, gold] : [lockedSide, lockedTop, lockedSide]} position-y={0.17} />
+      <mesh
+        geometry={bubbleGeo}
+        material={boss ? [red, red, red] : lit ? [gold, top, gold] : [lockedSide, lockedTop, lockedSide]}
+        position-y={0.17}
+      />
       <mesh geometry={starGeo} material={lit || boss ? starLit : starLocked} position-y={0.36} rotation-x={-Math.PI / 2} />
     </group>
   );
@@ -185,12 +192,22 @@ const HealthNote: React.FC<{ f: number }> = ({ f }) => {
       >
         B
       </div>
-      <div style={{ flex: 1, height: 46 * u, borderRadius: 12 * u, background: 'rgba(0,30,15,0.65)', overflow: 'hidden', position: 'relative' }}>
+      <div
+        style={{
+          flex: 1,
+          height: 46 * u,
+          borderRadius: 12 * u,
+          background: 'rgba(0,30,15,0.65)',
+          overflow: 'hidden',
+          position: 'relative',
+        }}
+      >
         <div
           style={{
             width: `${hp * 100}%`,
             height: '100%',
-            background: hp < 0.35 && !refilling ? `linear-gradient(90deg, ${C.red}, #ff8a5c)` : `linear-gradient(90deg, #b6ffd6, ${C.green})`,
+            background:
+              hp < 0.35 && !refilling ? `linear-gradient(90deg, ${C.red}, #ff8a5c)` : `linear-gradient(90deg, #b6ffd6, ${C.green})`,
             boxShadow: `0 0 ${20 * u}px rgba(255,255,255,0.6)`,
           }}
         />
@@ -222,8 +239,24 @@ export const S3Path: React.FC = () => {
         {Array.from({ length: N }, (_, i) =>
           i > 0 ? (
             <React.Fragment key={i}>
-              <Burst frame={f} at={litAt(i)} position={[bubblePos(i)[0], 0.5, bubblePos(i)[2]]} count={70} speed={7} life={34} size={0.12} seed={i} />
-              <Shockwave frame={f} at={litAt(i)} position={[bubblePos(i)[0], 0.05, bubblePos(i)[2]]} rotation={[-Math.PI / 2, 0, 0]} radius={2.6} life={20} />
+              <Burst
+                frame={f}
+                at={litAt(i)}
+                position={[bubblePos(i)[0], 0.5, bubblePos(i)[2]]}
+                count={70}
+                speed={7}
+                life={34}
+                size={0.12}
+                seed={i}
+              />
+              <Shockwave
+                frame={f}
+                at={litAt(i)}
+                position={[bubblePos(i)[0], 0.05, bubblePos(i)[2]]}
+                rotation={[-Math.PI / 2, 0, 0]}
+                radius={2.6}
+                life={20}
+              />
             </React.Fragment>
           ) : null,
         )}
@@ -244,12 +277,35 @@ export const S3Path: React.FC = () => {
         {f >= T.boss - 8 && (
           <>
             <Billboard position={[bp[0], lerp(-2, 2.35, bossRise) + bossDefeat * -3, bp[2] - 0.3 - recoil]}>
-              <Sprite src="assets/icons/bear-mascot.png" scale={3.1 * (1 - bossDefeat * 0.6)} shadow={false} emissive={T.hits.some((h) => f >= h && f < h + 4) ? 1.2 : 0} />
+              <Sprite
+                src="assets/icons/bear-mascot.png"
+                scale={3.1 * (1 - bossDefeat * 0.6)}
+                shadow={false}
+                emissive={T.hits.some((h) => f >= h && f < h + 4) ? 1.2 : 0}
+              />
             </Billboard>
             <pointLight position={[bp[0], 1.5, bp[2] + 1.5]} color={C.red} intensity={30} distance={10} />
-            <Shockwave frame={f} at={T.boss} position={[bp[0], 0.1, bp[2]]} rotation={[-Math.PI / 2, 0, 0]} radius={7} color={C.red} life={26} />
+            <Shockwave
+              frame={f}
+              at={T.boss}
+              position={[bp[0], 0.1, bp[2]]}
+              rotation={[-Math.PI / 2, 0, 0]}
+              radius={7}
+              color={C.red}
+              life={26}
+            />
             {T.hits.map((h, k) => (
-              <Burst key={k} frame={f} at={h} position={[bp[0], 2.2, bp[2] + 0.5]} count={90} speed={9} life={26} color={k % 2 ? C.goldHot : '#ff6a6a'} seed={20 + k} />
+              <Burst
+                key={k}
+                frame={f}
+                at={h}
+                position={[bp[0], 2.2, bp[2] + 0.5]}
+                count={90}
+                speed={9}
+                life={26}
+                color={k % 2 ? C.goldHot : '#ff6a6a'}
+                seed={20 + k}
+              />
             ))}
             <Burst frame={f} at={T.win} position={[bp[0], 2, bp[2] + 0.5]} count={300} speed={16} life={50} seed={33} />
             {f >= T.win && (

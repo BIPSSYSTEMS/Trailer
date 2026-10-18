@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "studio": "remotion studio",
-    "audio": "node scripts/make-audio.mjs",
+    "audio": "tsx scripts/make-audio.ts",
     "stills": "node scripts/render-stills.mjs",
     "render:9x16": "remotion render Trailer9x16 out/bips-trailer-9x16.mp4",
     "render:16x9": "remotion render Trailer16x9 out/bips-trailer-16x9.mp4",

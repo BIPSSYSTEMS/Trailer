@@ -89,7 +89,10 @@ const Garage: React.FC<{ f: number }> = ({ f }) => {
       <ContactBlob position={[0, 0.03, -0.75]} size={3.2} opacity={0.7} />
       {/* Clé dorée : tourne devant la porte puis s'y enfonce. */}
       {f < T.door + 2 && (
-        <group position={[0, 1.4, lerp(2.2, 1.3, tween(f, T.full, T.door, 0, 1, EASE.in))]} rotation={[0, 0, tween(f, T.full, T.door, 0, -Math.PI / 2, EASE.inOut)]}>
+        <group
+          position={[0, 1.4, lerp(2.2, 1.3, tween(f, T.full, T.door, 0, 1, EASE.in))]}
+          rotation={[0, 0, tween(f, T.full, T.door, 0, -Math.PI / 2, EASE.inOut)]}
+        >
           <Sprite src="assets/icons/key.png" scale={1.6} shadow={false} emissive={0.2} rotation={[0, Math.sin(f * 0.08) * 0.4, 0]} />
         </group>
       )}
@@ -133,7 +136,16 @@ const XpBar: React.FC<{ f: number }> = ({ f }) => {
       >
         {COPY.bonus.xp}
       </div>
-      <div style={{ flex: 1, height: 56 * u, borderRadius: 28 * u, background: 'rgba(255,255,255,0.1)', border: `${3 * u}px solid rgba(255,255,255,0.25)`, overflow: 'hidden' }}>
+      <div
+        style={{
+          flex: 1,
+          height: 56 * u,
+          borderRadius: 28 * u,
+          background: 'rgba(255,255,255,0.1)',
+          border: `${3 * u}px solid rgba(255,255,255,0.25)`,
+          overflow: 'hidden',
+        }}
+      >
         <div
           style={{
             width: `${fill * 100}%`,
@@ -159,7 +171,7 @@ const Interview: React.FC = () => {
   const minuteA = hours * 360;
   const hourA = hours * 30;
   const overlaps = Math.min(22, Math.floor((hours * 11) / 12 + 1e-6));
-  const lastOverlap = ((overlaps * 12) / 11) / 24;
+  const lastOverlap = (overlaps * 12) / 11 / 24;
   const blink = t > 0 && t - lastOverlap < 0.012 && overlaps > 0;
   const portrait = height > width;
   const R = (portrait ? 230 : 170) * u;
@@ -178,14 +190,32 @@ const Interview: React.FC = () => {
       }}
     >
       <div style={{ fontSize: 34 * u, fontWeight: 800, letterSpacing: '0.3em', color: C.goldHot }}>{COPY.bonus.interview}</div>
-      <div style={{ fontSize: (portrait ? 62 : 52) * u, fontWeight: 900, color: '#fff', textAlign: 'center', maxWidth: 940 * u, lineHeight: 1.12 }}>
+      <div
+        style={{
+          fontSize: (portrait ? 62 : 52) * u,
+          fontWeight: 900,
+          color: '#fff',
+          textAlign: 'center',
+          maxWidth: 940 * u,
+          lineHeight: 1.12,
+        }}
+      >
         {COPY.bonus.question}
       </div>
       <div style={{ position: 'relative', width: R * 2, height: R * 2 }}>
         <svg width={R * 2} height={R * 2} viewBox="-100 -100 200 200">
           <circle r="96" fill="#0d1836" stroke={blink ? C.green : C.goldHot} strokeWidth="4" />
           {Array.from({ length: 12 }, (_, i) => (
-            <line key={i} x1="0" y1="-84" x2="0" y2={i % 3 ? -76 : -70} stroke="#9fb0d9" strokeWidth={i % 3 ? 2 : 4} transform={`rotate(${i * 30})`} />
+            <line
+              key={i}
+              x1="0"
+              y1="-84"
+              x2="0"
+              y2={i % 3 ? -76 : -70}
+              stroke="#9fb0d9"
+              strokeWidth={i % 3 ? 2 : 4}
+              transform={`rotate(${i * 30})`}
+            />
           ))}
           <line x1="0" y1="8" x2="0" y2="-48" stroke="#fff" strokeWidth="7" strokeLinecap="round" transform={`rotate(${hourA})`} />
           <line x1="0" y1="12" x2="0" y2="-78" stroke={C.goldHot} strokeWidth="4" strokeLinecap="round" transform={`rotate(${minuteA})`} />
@@ -243,7 +273,16 @@ const DayNight: React.FC<{ f: number }> = ({ f }) => {
   const cx = width / 2;
   const cy = height * 0.5;
   const ui = (dark: boolean) => (
-    <AbsoluteFill style={{ background: dark ? '#0b0b0d' : '#f6f6f8', alignItems: 'center', justifyContent: 'center', fontFamily: FONT, flexDirection: 'column', gap: 30 * u }}>
+    <AbsoluteFill
+      style={{
+        background: dark ? '#0b0b0d' : '#f6f6f8',
+        alignItems: 'center',
+        justifyContent: 'center',
+        fontFamily: FONT,
+        flexDirection: 'column',
+        gap: 30 * u,
+      }}
+    >
       {[0, 1, 2].map((i) => (
         <div
           key={i}
@@ -266,13 +305,17 @@ const DayNight: React.FC<{ f: number }> = ({ f }) => {
           <div style={{ flex: 1, height: 18 * u, borderRadius: 9 * u, background: dark ? '#26262a' : '#e7e7ec' }} />
         </div>
       ))}
-      <div style={{ position: 'absolute', top: '36%', fontSize: 120 * u, fontWeight: 900, color: dark ? '#f5f5f7' : '#0b0b0d' }}>{dark ? COPY.bonus.night : COPY.bonus.day}</div>
+      <div style={{ position: 'absolute', top: '36%', fontSize: 120 * u, fontWeight: 900, color: dark ? '#f5f5f7' : '#0b0b0d' }}>
+        {dark ? COPY.bonus.night : COPY.bonus.day}
+      </div>
     </AbsoluteFill>
   );
   return (
     <AbsoluteFill style={{ opacity: enter, transform: `scale(${lerp(1.15, 1, enter)})` }}>
       {ui(false)}
-      <AbsoluteFill style={{ clipPath: `circle(${wipe * Math.hypot(width, height)}px at ${cx + sw.w / 4}px ${cy}px)` }}>{ui(true)}</AbsoluteFill>
+      <AbsoluteFill style={{ clipPath: `circle(${wipe * Math.hypot(width, height)}px at ${cx + sw.w / 4}px ${cy}px)` }}>
+        {ui(true)}
+      </AbsoluteFill>
       <div
         style={{
           position: 'absolute',
@@ -323,7 +366,15 @@ export const S8Bonus: React.FC = () => {
       <XpBar f={f} />
       <Slam text={COPY.bonus.levelUp} at={T.full} out={T.door + 10} y={-0.28} size={92} glow="rgba(255,190,60,1)" />
       {f >= T.unlocked && f < T.interview && (
-        <Slam text={COPY.bonus.unlocked} at={T.unlocked} out={T.interview - 6} y={0.3} size={140} color={C.green} glow="rgba(34,224,122,0.9)" />
+        <Slam
+          text={COPY.bonus.unlocked}
+          at={T.unlocked}
+          out={T.interview - 6}
+          y={0.3}
+          size={140}
+          color={C.green}
+          glow="rgba(34,224,122,0.9)"
+        />
       )}
       {f >= T.interview - 2 && f < T.interview + 12 ? (
         <CameraMotionBlur samples={5} shutterAngle={240}>

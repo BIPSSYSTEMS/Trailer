@@ -38,7 +38,8 @@ export const Slam: React.FC<{
 }) => {
   const frame = useCurrentFrame();
   const { fps, width, height } = useVideoConfig();
-  const u = Math.min(width, height) / 1080;
+  // En paysage, la hauteur utile est plus courte : textes un peu plus petits.
+  const u = (Math.min(width, height) / 1080) * (width > height ? 0.8 : 1);
   if (frame < at || (out !== undefined && frame > out + 8)) return null;
   const s = springAt(frame, fps, at, { damping: 11, stiffness: 260, mass: 0.5 });
   let scale = interpolate(s, [0, 1], [1.4, 1]);

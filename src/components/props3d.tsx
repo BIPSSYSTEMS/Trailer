@@ -300,22 +300,30 @@ export const Burst: React.FC<{
 };
 
 /** Onde de choc : anneau lumineux qui s'élargit et s'efface. */
-export const Shockwave: React.FC<{ frame: number; at: number; position?: V3; rotation?: V3; radius?: number; life?: number; color?: string }> = ({
-  frame,
-  at,
-  position,
-  rotation,
-  radius = 6,
-  life = 24,
-  color = C.goldHot,
-}) => {
+export const Shockwave: React.FC<{
+  frame: number;
+  at: number;
+  position?: V3;
+  rotation?: V3;
+  radius?: number;
+  life?: number;
+  color?: string;
+}> = ({ frame, at, position, rotation, radius = 6, life = 24, color = C.goldHot }) => {
   if (frame < at || frame > at + life) return null;
   const k = (frame - at) / life;
   const r = 0.2 + radius * (1 - Math.pow(1 - k, 3));
   return (
     <mesh position={position} rotation={rotation} scale={r}>
       <ringGeometry args={[0.92, 1, 96]} />
-      <meshBasicMaterial color={color} transparent opacity={(1 - k) * 0.9} toneMapped={false} depthWrite={false} side={THREE.DoubleSide} blending={THREE.AdditiveBlending} />
+      <meshBasicMaterial
+        color={color}
+        transparent
+        opacity={(1 - k) * 0.9}
+        toneMapped={false}
+        depthWrite={false}
+        side={THREE.DoubleSide}
+        blending={THREE.AdditiveBlending}
+      />
     </mesh>
   );
 };

@@ -9,14 +9,34 @@ import { bf, EASE, lerp, noise1, rng, springAt, tween, useUnit } from '../lib/an
 import { C, FONT } from '../theme';
 
 type Who = 'me' | 'buddy' | 'director' | 'client';
-const portrait = (who: Who, mood: string) => (who === 'me' ? `assets/portraits/man-suit-${mood}.png` : `assets/portraits/npc/${who}-${mood}.png`);
+const portrait = (who: Who, mood: string) =>
+  who === 'me' ? `assets/portraits/man-suit-${mood}.png` : `assets/portraits/npc/${who}-${mood}.png`;
 
 /** Expressions du bandeau de portraits, temps par temps (elles changent en rythme). */
 const MOODS: Record<Who, [number, string][]> = {
-  me: [[0, 'neutral'], [1.5, 'confident'], [4.5, 'smile'], [6.2, 'laugh']],
-  buddy: [[0, 'smile'], [0.5, 'surprise'], [3.5, 'worried'], [5.5, 'laugh']],
-  director: [[0, 'neutral'], [2.5, 'serious'], [4.6, 'smile']],
-  client: [[0, 'neutral'], [2.6, 'surprise'], [3.5, 'worried'], [4.7, 'smile']],
+  me: [
+    [0, 'neutral'],
+    [1.5, 'confident'],
+    [4.5, 'smile'],
+    [6.2, 'laugh'],
+  ],
+  buddy: [
+    [0, 'smile'],
+    [0.5, 'surprise'],
+    [3.5, 'worried'],
+    [5.5, 'laugh'],
+  ],
+  director: [
+    [0, 'neutral'],
+    [2.5, 'serious'],
+    [4.6, 'smile'],
+  ],
+  client: [
+    [0, 'neutral'],
+    [2.6, 'surprise'],
+    [3.5, 'worried'],
+    [4.7, 'smile'],
+  ],
 };
 const ORDER: Who[] = ['me', 'buddy', 'director', 'client'];
 export const S5_PORTRAITS = ORDER.flatMap((w) => MOODS[w].map(([, m]) => portrait(w, m)));
@@ -40,7 +60,14 @@ const cam = (f: number): Cam => ({
 
 const Backdrop: React.FC<{ f: number }> = ({ f }) => {
   const r = rng(77);
-  const items = Array.from({ length: 26 }, () => ({ x: (r() - 0.5) * 12, y: (r() - 0.5) * 14, z: -2 - r() * 14, s: 0.5 + r() * 0.8, ph: r() * 6, coin: r() > 0.55 }));
+  const items = Array.from({ length: 26 }, () => ({
+    x: (r() - 0.5) * 12,
+    y: (r() - 0.5) * 14,
+    z: -2 - r() * 14,
+    s: 0.5 + r() * 0.8,
+    ph: r() * 6,
+    coin: r() > 0.55,
+  }));
   return (
     <Stage cam={cam} bloom={0.9} fog={[6, 20]} motionBlur={0.6}>
       {items.map((it, i) => {
@@ -77,9 +104,14 @@ const Face: React.FC<{ who: Who; f: number; size: number; label: string }> = ({ 
           boxShadow: speaking ? `0 0 ${40 * u}px ${C.gold}` : `0 ${10 * u}px ${30 * u}px rgba(0,0,0,0.5)`,
         }}
       >
-        <Img src={staticFile(portrait(who, mood))} style={{ width: '100%', height: '100%', objectFit: 'cover', transform: 'scale(1.15) translateY(6%)' }} />
+        <Img
+          src={staticFile(portrait(who, mood))}
+          style={{ width: '100%', height: '100%', objectFit: 'cover', transform: 'scale(1.15) translateY(6%)' }}
+        />
       </div>
-      <div style={{ fontFamily: FONT, fontWeight: 800, fontSize: 26 * u, color: speaking ? C.goldHot : C.muted, letterSpacing: '0.04em' }}>{label}</div>
+      <div style={{ fontFamily: FONT, fontWeight: 800, fontSize: 26 * u, color: speaking ? C.goldHot : C.muted, letterSpacing: '0.04em' }}>
+        {label}
+      </div>
     </div>
   );
 };
@@ -136,7 +168,10 @@ const Thread: React.FC = () => {
               const s = springAt(f, fps, at, { damping: 10, stiffness: 280, mass: 0.45 });
               const wob = noise1(f * 0.2, i) * 0.6;
               return (
-                <div key={i} style={{ display: 'flex', justifyContent: me ? 'flex-end' : 'flex-start', alignItems: 'flex-end', gap: 14 * u }}>
+                <div
+                  key={i}
+                  style={{ display: 'flex', justifyContent: me ? 'flex-end' : 'flex-start', alignItems: 'flex-end', gap: 14 * u }}
+                >
                   {!me && (
                     <Img
                       src={staticFile(portrait(m.who as Who, moodAt(m.who as Who, f).mood))}
@@ -164,7 +199,11 @@ const Thread: React.FC = () => {
                       <span style={{ letterSpacing: '0.2em', opacity: 0.7 }}>{['•  ', '••', '•••'][Math.floor(f / 4) % 3]}</span>
                     ) : (
                       <>
-                        {!me && <div style={{ fontSize: 28 * u, fontWeight: 800, color: C.goldHot, marginBottom: 4 * u }}>{m.name.toUpperCase()}</div>}
+                        {!me && (
+                          <div style={{ fontSize: 28 * u, fontWeight: 800, color: C.goldHot, marginBottom: 4 * u }}>
+                            {m.name.toUpperCase()}
+                          </div>
+                        )}
                         {m.text}
                       </>
                     )}

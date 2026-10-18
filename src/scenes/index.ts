@@ -8,6 +8,7 @@ import { S5Dialogues } from './S5Dialogues';
 import { S6Scenarios } from './S6Scenarios';
 import { S7Markets } from './S7Markets';
 import { S8Bonus } from './S8Bonus';
+import { S9Finale } from './S9Finale';
 
 export const SCENE_COMPONENTS: Partial<Record<SceneId, React.FC>> = {
   hook: S1Hook,
@@ -18,4 +19,5 @@ export const SCENE_COMPONENTS: Partial<Record<SceneId, React.FC>> = {
   scenarios: S6Scenarios,
   markets: S7Markets,
   bonus: S8Bonus,
+  finale: S9Finale,
 };

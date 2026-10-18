@@ -40,7 +40,13 @@ const camBase = (f: number): Cam => {
   // Petit coup de zoom sur chaque temps.
   return { ...c, fov: (c.fov ?? 40) - beatPulse(f, 7) * 1.6 };
 };
-const cam = (f: number) => shake(camBase(f), f, T.changes.reduce((a, h) => a + (f >= h ? 0.12 * Math.exp(-(f - h) / 6) : 0), 0), 5);
+const cam = (f: number) =>
+  shake(
+    camBase(f),
+    f,
+    T.changes.reduce((a, h) => a + (f >= h ? 0.12 * Math.exp(-(f - h) / 6) : 0), 0),
+    5,
+  );
 
 const Podium: React.FC<{ x: number }> = ({ x }) => {
   const obsidian = useMatcap('obsidian', '#6a6f7c');
@@ -126,7 +132,13 @@ export const S4Career: React.FC = () => {
         {[-1.6, -0.5, 0.6, 1.7].map((x, i) => (
           <mesh key={i} position={[x, 3, -3]} rotation={[0, 0, (i - 1.5) * 0.12]}>
             <planeGeometry args={[0.25, 9]} />
-            <meshBasicMaterial color={C.gold} transparent opacity={0.05 + pulse * 0.06} blending={THREE.AdditiveBlending} depthWrite={false} />
+            <meshBasicMaterial
+              color={C.gold}
+              transparent
+              opacity={0.05 + pulse * 0.06}
+              blending={THREE.AdditiveBlending}
+              depthWrite={false}
+            />
           </mesh>
         ))}
         <GoldDust frame={f} count={260} spread={[12, 8, 10]} center={[0, 3, -2]} />

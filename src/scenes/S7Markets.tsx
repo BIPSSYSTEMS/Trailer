@@ -40,7 +40,12 @@ const payoff = (fn: (x: number) => number, p: number, n = 90): V3[] => {
     const x = X0 + ((X1 - X0) * i) / n;
     pts.push([x, fn(x), 0]);
   }
-  return pts.length > 1 ? pts : [[X0, fn(X0), 0], [X0 + 0.01, fn(X0 + 0.01), 0]];
+  return pts.length > 1
+    ? pts
+    : [
+        [X0, fn(X0), 0],
+        [X0 + 0.01, fn(X0 + 0.01), 0],
+      ];
 };
 
 // Route de la carte qui prolonge le collar : New York → Francfort.
@@ -87,7 +92,13 @@ const camBase = (f: number): Cam => {
   const k = tween(f, T.globe, T.end, 0, 1, EASE.out);
   return { pos: [lerp(0.5, -0.6, k), lerp(1.2, 0.6, k), lerp(6.5, 8.2, k)], target: [0, 0, 0], fov: 44 };
 };
-const cam = (f: number) => shake(camBase(f), f, [...T.flags, T.globe].reduce((a, h) => a + (f >= h ? 0.08 * Math.exp(-(f - h) / 6) : 0), 0), 31);
+const cam = (f: number) =>
+  shake(
+    camBase(f),
+    f,
+    [...T.flags, T.globe].reduce((a, h) => a + (f >= h ? 0.08 * Math.exp(-(f - h) / 6) : 0), 0),
+    31,
+  );
 
 // ------------------------------------------------------------------ compteurs de grecques
 
@@ -192,7 +203,9 @@ export const S7Markets: React.FC = () => {
             {toCollar < 1 && (
               <>
                 <Line points={payoff(call, callP)} color={C.green} lineWidth={7} toneMapped={false} transparent opacity={1 - toCollar} />
-                {f >= T.put && <Line points={payoff(put, putP)} color={C.red} lineWidth={7} toneMapped={false} transparent opacity={1 - toCollar} />}
+                {f >= T.put && (
+                  <Line points={payoff(put, putP)} color={C.red} lineWidth={7} toneMapped={false} transparent opacity={1 - toCollar} />
+                )}
               </>
             )}
             {toCollar > 0 && <Line points={payoff(collar, toCollar)} color={C.goldHot} lineWidth={9} toneMapped={false} />}
@@ -269,7 +282,15 @@ export const S7Markets: React.FC = () => {
       </Stage>
       <Greeks f={f} />
       <Slam text={COPY.markets.title[0]} at={T.trade} out={T.couvre - 6} y={-0.3} size={170} color={C.green} glow="rgba(34,224,122,0.8)" />
-      <Slam text={COPY.markets.title[1]} at={T.couvre} out={T.flatten + 6} y={-0.3} size={170} color={C.goldHot} glow="rgba(255,190,60,0.9)" />
+      <Slam
+        text={COPY.markets.title[1]}
+        at={T.couvre}
+        out={T.flatten + 6}
+        y={-0.3}
+        size={170}
+        color={C.goldHot}
+        glow="rgba(255,190,60,0.9)"
+      />
       <Slam text={COPY.markets.collar} at={T.collar + 12} out={T.flatten - 2} y={-0.2} size={60} tracking={0.3} weight={800} />
       <Slam text={COPY.markets.title[2]} at={T.comprends} out={T.end - 4} y={0.32} size={150} />
       <Flash at={T.globe} len={8} peak={0.7} />

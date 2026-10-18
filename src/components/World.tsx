@@ -101,7 +101,14 @@ export const Globe: React.FC<{ radius?: number; rotY?: number; children?: React.
       </mesh>
       <mesh scale={1.06}>
         <sphereGeometry args={[radius, 48, 32]} />
-        <meshBasicMaterial color="#3d6bff" transparent opacity={0.08} side={THREE.BackSide} blending={THREE.AdditiveBlending} depthWrite={false} />
+        <meshBasicMaterial
+          color="#3d6bff"
+          transparent
+          opacity={0.08}
+          side={THREE.BackSide}
+          blending={THREE.AdditiveBlending}
+          depthWrite={false}
+        />
       </mesh>
       {children}
     </group>
@@ -134,7 +141,7 @@ export const Arc: React.FC<{ a: V3; b: V3; lift: number; p: number; pulse?: numb
   const k = Math.max(2, Math.round(p * (pts.length - 1)) + 1);
   if (p <= 0) return null;
   const head = pts[k - 1];
-  const pi = pulse === undefined ? -1 : Math.round(((pulse % 1) + 1) % 1 * (pts.length - 1));
+  const pi = pulse === undefined ? -1 : Math.round((((pulse % 1) + 1) % 1) * (pts.length - 1));
   return (
     <>
       <Line points={pts.slice(0, k)} color={color} lineWidth={5} toneMapped={false} transparent opacity={0.95} />

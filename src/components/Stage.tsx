@@ -20,14 +20,10 @@ export type Cam = {
 };
 
 /**
- * Règle d'adaptation des formats : le carré central du 9:16 reste visible en 16:9.
- * Le champ vertical en paysage = le champ horizontal du portrait.
+ * Règle d'adaptation des formats : en 16:9, le champ vertical vaut 80 % de celui du 9:16.
+ * On garde l'essentiel de la hauteur utile (personnages, logo) et on gagne beaucoup de largeur.
  */
-export const vfovFor = (fovPortrait: number, aspect: number) => {
-  if (aspect <= 1) return fovPortrait;
-  const h = 2 * Math.atan(Math.tan((fovPortrait * Math.PI) / 360) * (9 / 16));
-  return (h * 180) / Math.PI;
-};
+export const vfovFor = (fovPortrait: number, aspect: number) => (aspect <= 1 ? fovPortrait : fovPortrait * 0.8);
 
 const CameraRig: React.FC<Cam> = ({ pos, target, fov = 40, roll = 0 }) => {
   const camera = useThree((s) => s.camera) as THREE.PerspectiveCamera;
