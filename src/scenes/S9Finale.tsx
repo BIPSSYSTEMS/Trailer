@@ -2,7 +2,7 @@ import { Billboard } from '@react-three/drei';
 import React, { useMemo } from 'react';
 import { AbsoluteFill, useCurrentFrame, useVideoConfig } from 'remotion';
 import { Flash, Slam } from '../components/Kinetic';
-import { Logo3D } from '../components/Logo3D';
+import { LogoMonogram } from '../components/LogoConcepts';
 import { Banknote, Burst, Coin, ContactBlob, Floor, GoldDust, Shockwave, Sprite } from '../components/props3d';
 import { Cam, Stage } from '../components/Stage';
 import { COPY } from '../copy';
@@ -197,15 +197,15 @@ export const S9Finale: React.FC = () => {
                   <Sprite src="assets/icons/bear-mascot.png" scale={2.4} shadow={false} emissive={0.05} />
                 </Billboard>
               </group>
-              <Logo3D
-                position={portrait ? [0, 4.55, -0.4] : [-2.6, 2.75, -0.4]}
-                size={portrait ? 0.82 : 1}
-                depth={0.3}
-                scale={pop(T.boom + 6, 9, 160)}
-                rotation={[0, Math.sin((f - T.boom) * 0.02) * 0.12, 0]}
-                sweep={T.sweeps.reduce((acc, s) => (f >= s && f < s + 30 ? tween(f, s, s + 30, -1.2, 1.4, EASE.inOut) : acc), -1)}
-                boost={1.3}
-              />
+              <group position={portrait ? [0, 4.3, -0.4] : [-2.6, 2.8, -0.4]} rotation={[0, Math.sin((f - T.boom) * 0.02) * 0.12, 0]}>
+                <LogoMonogram
+                  size={portrait ? 0.6 : 0.85}
+                  tile={pop(T.boom + 6, 9, 160)}
+                  p={tween(f, T.boom + 10, T.boom + 34, 0, 1, EASE.out)}
+                  sweep={T.sweeps.reduce((acc, s) => (f >= s && f < s + 30 ? tween(f, s, s + 30, -1.2, 1.4, EASE.inOut) : acc), -1)}
+                  wordReveal={(i) => pop(T.boom + 16 + i * 3, 13, 200)}
+                />
+              </group>
               <Rain f={f} />
               <Burst frame={f} at={T.boom} position={[portrait ? 0 : 2.2, 2, 0.5]} count={380} speed={20} life={70} seed={95} />
               <Shockwave frame={f} at={T.boom} position={[0, 0.03, 0]} rotation={[-Math.PI / 2, 0, 0]} radius={12} life={30} />

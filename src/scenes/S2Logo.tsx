@@ -2,7 +2,7 @@ import { Billboard } from '@react-three/drei';
 import React from 'react';
 import { AbsoluteFill, useCurrentFrame, useVideoConfig } from 'remotion';
 import { Flash } from '../components/Kinetic';
-import { Logo3D } from '../components/Logo3D';
+import { LogoMonogram } from '../components/LogoConcepts';
 import { Burst, Coin, Floor, GoldDust, Shockwave, Sprite } from '../components/props3d';
 import { Cam, Stage } from '../components/Stage';
 import { COPY } from '../copy';
@@ -87,16 +87,16 @@ export const S2Logo: React.FC = () => {
           })}
         {f >= T.logo && (
           <>
-            <Logo3D
-              word={COPY.logo.word}
-              size={0.95}
-              depth={0.36}
-              position={CENTER}
-              rotation={[0, logoRotY, 0]}
-              scale={pop}
-              sweep={sweep}
-              boost={1.3}
-            />
+            {/* Logo B : l'icône surgit, le pouls se dessine à travers le B, puis BIPS monte lettre par lettre. */}
+            <group position={[0, CENTER[1] + 0.25, 0]} rotation={[0, logoRotY, 0]}>
+              <LogoMonogram
+                size={0.95}
+                tile={pop}
+                p={tween(f, T.logo + 6, T.logo + 30, 0, 1, EASE.out)}
+                sweep={sweep}
+                wordReveal={(i) => springAt(f, fps, T.logo + 14 + i * 3, { damping: 13, stiffness: 200 })}
+              />
+            </group>
             <Burst frame={f} at={T.logo} position={CENTER} count={320} speed={18} life={70} size={0.1} />
             <Shockwave frame={f} at={T.logo} position={[0, CENTER[1], -0.6]} radius={8} />
             <Shockwave frame={f} at={T.logo + 4} position={[0, -0.85, 0]} rotation={[-Math.PI / 2, 0, 0]} radius={10} life={30} />

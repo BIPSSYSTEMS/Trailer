@@ -154,13 +154,15 @@ export const LogoPulse: React.FC<{ size?: number; p?: number; sweep?: number; re
 };
 
 /** B. Monogramme (icône d'app) + mot BIPS espacé dessous. */
-export const LogoMonogram: React.FC<{ size?: number; p?: number; sweep?: number; tile?: number; word?: number }> = ({
-  size = 1,
-  p = 1,
-  sweep,
-  tile = 1,
-  word = 1,
-}) => {
+export const LogoMonogram: React.FC<{
+  size?: number;
+  p?: number;
+  sweep?: number;
+  tile?: number;
+  word?: number;
+  /** Apparition lettre par lettre du mot sous l'icône (0 → 1 par lettre). */
+  wordReveal?: (i: number) => number;
+}> = ({ size = 1, p = 1, sweep, tile = 1, word = 1, wordReveal }) => {
   const navy = useMatcap('obsidian', '#5a6fb8');
   const chrome = useMatcap('chrome');
   const T = 1.7 * size;
@@ -185,7 +187,16 @@ export const LogoMonogram: React.FC<{ size?: number; p?: number; sweep?: number;
         </group>
       </group>
       <group position-y={-0.78 * size} scale={word}>
-        <Wordmark word="BIPS" weight="semibold" size={0.4 * size} depth={0.08 * size} tracking={0.5} sweep={sweep} boost={1.5} />
+        <Wordmark
+          word="BIPS"
+          weight="semibold"
+          size={0.4 * size}
+          depth={0.08 * size}
+          tracking={0.5}
+          sweep={sweep}
+          boost={1.5}
+          reveal={wordReveal}
+        />
       </group>
     </group>
   );
