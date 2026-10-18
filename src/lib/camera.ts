@@ -68,6 +68,9 @@ export const motionOf = (camFn: (f: number) => Cam, f: number, aspect: number, s
   const da = fa.length();
   fa.normalize();
   fb.normalize();
+  // Coupe franche (saut de position ou d'orientation) : pas de flou sur l'image de coupe.
+  const jump = Math.hypot(b.pos[0] - a.pos[0], b.pos[1] - a.pos[1], b.pos[2] - a.pos[2]);
+  if (jump > 1.6 || fa.dot(fb) < 0.8) return { dir: [0, 0] as [number, number], zoom: 0 };
   const up = new THREE.Vector3(Math.sin(a.roll ?? 0), Math.cos(a.roll ?? 0), 0);
   const right = new THREE.Vector3().crossVectors(fa, up).normalize();
   const up2 = new THREE.Vector3().crossVectors(right, fa).normalize();
