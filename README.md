@@ -3,6 +3,17 @@
 Trailer de lancement de l'app BIPS (≈ 46 s, 128 BPM), rendu image par image avec Remotion + React Three Fiber.
 Tout est dérivé de `useCurrentFrame()` : aucune animation en temps réel, aléatoire seedé, rendu identique à chaque passe.
 
+## Vidéo investisseurs (2 min, 16:9)
+
+Composition `Investor16x9` (`src/investor/`) : ton sobre, rythme lent, vrais écrans de l'app filmés dans un
+téléphone, une fonctionnalité par section. Textes dans `src/investor/copy.ts`, durées dans `src/investor/timeline.ts`.
+
+```sh
+npm run capture -- <export web de l'app>   # recapture les écrans → public/app-screens/
+npm run audio:investor                     # bande-son calme → public/audio/bips-investor.wav
+npm run render:investor                    # → out/bips-investisseurs-16x9.mp4
+```
+
 ## Commandes
 
 ```sh
