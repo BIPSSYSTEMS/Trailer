@@ -3,6 +3,20 @@
 Trailer de lancement de l'app BIPS (≈ 46 s, 128 BPM), rendu image par image avec Remotion + React Three Fiber.
 Tout est dérivé de `useCurrentFrame()` : aucune animation en temps réel, aléatoire seedé, rendu identique à chaque passe.
 
+## Keynote Base Point (≈ 3 min, 16:9) — vidéo de présentation actuelle
+
+Composition `Keynote16x9` (`src/keynote/`) : style keynote Apple (fond noir, Inter Display, un seul accent vert),
+iPhone 3D en CSS (`IPhone.tsx` : cadre titane, épaisseur, boutons, Dynamic Island, dos), vrais écrans de la
+dernière version de l'app. Textes dans `src/keynote/copy.ts`, durées dans `src/keynote/timeline.ts`.
+Planche de marque : composition `BasePointLogo`.
+
+```sh
+npm run capture:keynote -- <export web de l'app> <dossier brut>   # captures 390 × 756 pt
+python3 scripts/frame_screens.py <dossier brut>                     # → public/keynote-screens/ (format iPhone)
+npm run audio:keynote                                               # → public/audio/base-point-keynote.wav
+npm run render:keynote                                              # → out/base-point-keynote-16x9.mp4
+```
+
 ## Vidéo investisseurs (2 min, 16:9)
 
 Composition `Investor16x9` (`src/investor/`) : ton sobre, rythme lent, vrais écrans de l'app filmés dans un

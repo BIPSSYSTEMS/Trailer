@@ -12,3 +12,14 @@ for (const [file, weight] of [
 ] as const) {
   loadFont({ family: FONT, url: staticFile(`fonts/${file}`), weight });
 }
+
+// Vidéo keynote Base Point : Inter Display (titres) et Inter (texte courant).
+for (const [file, weight] of [
+  ['InterDisplay-Light.otf', '300'],
+  ['InterDisplay-Regular.otf', '400'],
+  ['InterDisplay-Medium.otf', '500'],
+  ['InterDisplay-SemiBold.otf', '600'],
+  ['InterDisplay-Bold.otf', '700'],
+] as const) {
+  loadFont({ family: 'KDisplay', url: staticFile(`fonts/${file}`), weight });
+}

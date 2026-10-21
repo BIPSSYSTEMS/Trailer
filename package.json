@@ -11,7 +11,10 @@
     "typecheck": "tsc --noEmit",
     "render:investor": "remotion render Investor16x9 out/bips-investisseurs-16x9.mp4",
     "audio:investor": "tsx scripts/make-audio-investor.ts",
-    "capture": "node scripts/capture-app.mjs"
+    "capture": "node scripts/capture-app.mjs",
+    "render:keynote": "remotion render Keynote16x9 out/base-point-keynote-16x9.mp4",
+    "audio:keynote": "tsx scripts/make-audio-keynote.ts",
+    "capture:keynote": "node scripts/capture-keynote.mjs"
   },
   "dependencies": {
     "@react-three/drei": "^10.7.9",
