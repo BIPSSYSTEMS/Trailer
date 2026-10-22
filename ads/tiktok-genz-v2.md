@@ -1,5 +1,27 @@
 # BPS. — Ad TikTok / Reels (Gen Z) — v2
 
+## Version produite : motion design (`bps-tiktok-genz.mp4`)
+
+31,5 s, 1080×1920, 30 i/s, sans son (ajouter un son tendance dans TikTok ou Instagram au moment de publier). Fabriquée dans le Figma BPS, page « Trailer · TikTok Gen Z », avec la timeline d'animation de Figma et l'export MP4 : aucun crédit IA. Les écrans sont de vraies captures de l'app (version web, mode sombre, compte de démo « Léa », niveau 16, Managing Director).
+
+| Temps | Scène | Texte à l'écran |
+| --- | --- | --- |
+| 0–2,8 s | Hook | « POV : t'as 21 ans et t'es Managing Director. (sur BPS.) » |
+| 2,8–5,6 s | Carrière | « Stagiaire → MD » · « Ta carrière monte avec ton XP. » |
+| 5,6–8,4 s | Parcours et leçon | « Des leçons courtes. » · « Toutes sourcées. Quiz, étoiles, vies. » |
+| 8,4–11 s | Accueil | « Série. XP. Défi du jour. » · « Ton rituel finance, chaque jour. » |
+| 11–13,8 s | Marchés et graphique | « Un compte fictif. Les vrais cours. » |
+| 13,8–16,6 s | Simulation | « Avant de cliquer : 1 000 futurs possibles. » |
+| 16,6–19,4 s | Options, futures, swaps | « Options. Futures. Swaps. » · « Les produits des salles de marché. » |
+| 19,4–22,2 s | Scénarios | « Rejoue de vraies crises. » · « À l'aveugle. Tu prends parti, la courbe tranche. » |
+| 22,2–25 s | Carte et Hedge Lab | « Comprends le monde. » · « Carte des rapports de force + Hedge Lab. » |
+| 25–27,8 s | Entretien | « Le brainteaser de l'entretien ? Déjà fait. » |
+| 27,8–31,5 s | Fin | Logo BPS. · « Apprends les marchés. Sans risquer un euro. » · mention légale |
+
+Pour modifier un texte ou une capture : changer le calque dans Figma puis réexporter le cadre « BPS · TikTok Gen Z · 9:16 » en MP4.
+
+## Version tournée (option, avec vidéo IA ou tournage réel)
+
 Format : vertical 9:16, environ 35 s au montage, son activé.
 Fabrication : 5 plans de 8 s générés par Veo 3.1 (la durée maximale d'un plan), montés dans CapCut avec les vraies captures d'écran de l'app et les textes à l'écran.
 
