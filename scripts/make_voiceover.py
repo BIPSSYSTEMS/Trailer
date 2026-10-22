@@ -29,19 +29,29 @@ ap.add_argument('--music', default=str(ROOT / 'public/audio/base-point-keynote.w
 ap.add_argument('--lines', default=str(ROOT / 'src/keynote/voix.json'))
 ap.add_argument('--out', default=str(ROOT / 'public/audio/base-point-keynote-voix.wav'))
 ap.add_argument('--voice-only', default=None, help='écrit aussi la voix seule (pour un aperçu)')
+ap.add_argument('--duck', type=float, default=0.35, help='gain de la musique pendant la voix')
+ap.add_argument('--timings', default=None, help='écrit le minutage réel de chaque phrase (pour caler les sous-titres)')
 args = ap.parse_args()
 
 voice = PiperVoice.load(args.voice)
 cfg = SynthesisConfig(speaker_id=args.speaker, length_scale=args.speed, noise_scale=0.6, noise_w_scale=0.75)
 
 
-def synth(text: str) -> np.ndarray:
+def synth(text: str) -> tuple[np.ndarray, list[tuple[float, float]]]:
+    """Voix à 48 kHz, et pour chaque phrase (Piper découpe par phrase) le début et la fin de la parole, en s."""
     chunks = list(voice.synthesize(text, cfg))
     sr = chunks[0].sample_rate
+    sentences, pos = [], 0
+    for c in chunks:
+        a = c.audio_float_array
+        idx = np.where(np.abs(a) > 0.02)[0]
+        if len(idx):
+            sentences.append(((pos + idx[0]) / sr, (pos + idx[-1]) / sr))
+        pos += len(a)
     x = np.concatenate([c.audio_float_array for c in chunks]).astype(np.float64)
     # Rééchantillonnage linéaire vers 48 kHz (suffisant pour la voix).
     n = int(len(x) * SR / sr)
-    return np.interp(np.linspace(0, len(x) - 1, n), np.arange(len(x)), x)
+    return np.interp(np.linspace(0, len(x) - 1, n), np.arange(len(x)), x), sentences
 
 
 with wave.open(args.music) as w:
@@ -52,8 +62,10 @@ lines = json.loads(Path(args.lines).read_text())['lines']
 N = len(music)
 vo = np.zeros(N)
 spans = []
+timings = []
 for i, ln in enumerate(lines):
-    a = synth(ln['text'])
+    a, sentences = synth(ln['text'])
+    timings.append({'t': ln['t'], 'sentences': [[round(ln['t'] + s0, 3), round(ln['t'] + s1, 3)] for s0, s1 in sentences]})
     # Petite enveloppe pour éviter les clics.
     fade = min(len(a) // 4, int(0.01 * SR))
     a[:fade] *= np.linspace(0, 1, fade)
@@ -72,7 +84,7 @@ vo *= 0.7 / max(1e-6, np.abs(vo).max())
 duck = np.ones(N)
 pad_in, pad_out = int(0.25 * SR), int(0.6 * SR)
 for s0, s1 in spans:
-    duck[max(0, s0 - pad_in) : min(N, s1 + pad_out)] = 0.35
+    duck[max(0, s0 - pad_in) : min(N, s1 + pad_out)] = args.duck
 # Lissage du gain (constante de temps ~120 ms) pour des transitions douces.
 k = int(0.12 * SR)
 kernel = np.ones(k) / k
@@ -88,6 +100,9 @@ with wave.open(args.out, 'wb') as w:
     w.setframerate(SR)
     w.writeframes(out.tobytes())
 print('→', args.out)
+if args.timings:
+    Path(args.timings).write_text(json.dumps({'lines': timings}, indent=1) + '\n')
+    print('→', args.timings)
 if args.voice_only:
     v = (np.clip(np.stack([vo, vo], axis=1), -1, 1) * 32767).astype(np.int16)
     with wave.open(args.voice_only, 'wb') as w:

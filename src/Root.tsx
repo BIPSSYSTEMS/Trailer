@@ -8,6 +8,7 @@ import { PhoneLab } from './keynote/PhoneLab';
 import { Keynote, Keynote2K, KEYNOTE_FRAMES } from './keynote/Keynote';
 import { LogoBoard } from './keynote/LogoBoard';
 import { Investor, INVESTOR_FRAMES } from './investor/Investor';
+import { AdGenZ, AD_FRAMES } from './ad/AdGenZ';
 
 export const Root: React.FC = () => (
   <>
@@ -15,6 +16,7 @@ export const Root: React.FC = () => (
     <Composition id="Trailer16x9" component={Trailer} width={1920} height={1080} fps={FPS} durationInFrames={TOTAL_FRAMES} />
     <Composition id="Keynote16x9" component={Keynote} width={1920} height={1080} fps={60} durationInFrames={KEYNOTE_FRAMES} />
     <Composition id="Keynote2K" component={Keynote2K} width={2560} height={1440} fps={60} durationInFrames={KEYNOTE_FRAMES} />
+    <Composition id="AdGenZ9x16" component={AdGenZ} width={1080} height={1920} fps={60} durationInFrames={AD_FRAMES} />
     <Composition id="BasePointLogo" component={LogoBoard} width={1920} height={1300} fps={60} durationInFrames={1} />
     <Composition id="PhoneLab" component={PhoneLab} width={1920} height={1080} fps={60} durationInFrames={60} />
     <Composition id="Investor16x9" component={Investor} width={1920} height={1080} fps={FPS} durationInFrames={INVESTOR_FRAMES} />

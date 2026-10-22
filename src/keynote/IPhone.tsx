@@ -24,7 +24,7 @@ export const screenPoint = (p: Pose, x: number, y: number) => {
   return [p.cx + (x - SCREEN.w / 2) * k, p.cy + (y - SCREEN.h / 2) * k] as const;
 };
 
-export type Shot = { src: string; at: number; mode?: 'fade' | 'push' | 'scroll' };
+export type Shot = { src: string; at: number; mode?: 'fade' | 'push' | 'scroll' | 'cut'; dur?: number };
 
 const isDark = (src: string) => (meta as Record<string, { dark: boolean }>)[src]?.dark ?? false;
 
@@ -35,7 +35,7 @@ const ScreenImg: React.FC<{ src: string; style?: React.CSSProperties }> = ({ src
   />
 );
 
-/** Écrans successifs avec transition (fondu, navigation poussée, ou défilement). */
+/** Écrans successifs avec transition (fondu, navigation poussée, défilement, ou coupe franche). */
 const Screens: React.FC<{ shots: Shot[] }> = ({ shots }) => {
   const f = useCurrentFrame();
   let i = 0;
@@ -44,8 +44,8 @@ const Screens: React.FC<{ shots: Shot[] }> = ({ shots }) => {
   });
   const cur = shots[i];
   const prev = shots[i - 1];
-  const t = prev ? tw(f, cur.at, cur.at + 30, 0, 1, EZ.inOut) : 1;
   const mode = cur.mode ?? 'fade';
+  const t = prev && mode !== 'cut' ? tw(f, cur.at, cur.at + (cur.dur ?? 30), 0, 1, EZ.inOut) : 1;
   const prevStyle: React.CSSProperties =
     mode === 'push'
       ? { transform: `translateX(${-t * 28}%)`, filter: `brightness(${1 - t * 0.2})` }

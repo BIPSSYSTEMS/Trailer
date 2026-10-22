@@ -26,6 +26,27 @@ ffmpeg -i out/base-point-keynote-16x9.mp4 -i public/audio/base-point-keynote-voi
        -map 0:v -map 1:a -c:v copy -c:a aac -b:a 256k out/base-point-keynote-16x9-voix.mp4   # sans refaire l'image
 ```
 
+## Pub Gen Z (30 s, 9:16) — TikTok / Reels / Shorts
+
+Composition `AdGenZ9x16` (`src/ad/`), brief complet dans `docs/prompt-pub-genz.md` : accroche en une seconde,
+sous-titres karaoké calés sur la voix, coupes au temps (120 BPM), stickers, doigt qui manipule l'app, iPhone 3D
+de la keynote. Découpage dans `src/ad/timeline.ts`, voix dans `src/ad/voix.json` (`show` = sous-titre affiché).
+
+```sh
+npm run audio:genz                                                   # musique → public/audio/base-point-genz.wav
+python3 scripts/make_voiceover.py fr_FR-siwis-medium.onnx --speed 0.92 --duck 0.45 \
+  --music public/audio/base-point-genz.wav --lines src/ad/voix.json \
+  --out public/audio/base-point-genz-voix.wav --timings src/ad/voix-timings.json   # voix + minutage des sous-titres
+node scripts/stills-genz.mjs out/planche.png 0.5 3 6 9 12 15 19 22 25 28           # planche de contrôle
+npm run render:genz                                                  # image seule → out/base-point-pub-genz-image.mp4
+ffmpeg -i out/base-point-pub-genz-image.mp4 -i public/audio/base-point-genz-voix.wav -map 0:v -map 1:a -c:v copy \
+       -af loudnorm=I=-14:TP=-1 -c:a aac -b:a 256k -shortest out/base-point-pub-genz-9x16.mp4          # avec voix
+ffmpeg -i out/base-point-pub-genz-image.mp4 -i public/audio/base-point-genz.wav -map 0:v -map 1:a -c:v copy \
+       -af loudnorm=I=-14:TP=-1 -c:a aac -b:a 256k -shortest out/base-point-pub-genz-9x16-sans-voix.mp4  # musique seule
+```
+
+Après un changement de texte dans `voix.json`, refaire la voix (le minutage des sous-titres suit tout seul).
+
 ## Vidéo investisseurs (2 min, 16:9)
 
 Composition `Investor16x9` (`src/investor/`) : ton sobre, rythme lent, vrais écrans de l'app filmés dans un
