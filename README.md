@@ -17,6 +17,15 @@ npm run audio:keynote                                               # → public
 npm run render:keynote                                              # → out/base-point-keynote-16x9.mp4
 ```
 
+Voix off (texte et minutage dans `src/keynote/voix.json`, voix neuronale française Piper, la musique baisse sous la voix) :
+
+```sh
+pip install piper-tts   # voix : huggingface.co/rhasspy/piper-voices (fr_FR-siwis-medium, fr_FR-tom-medium, fr_FR-upmc-medium)
+python3 scripts/make_voiceover.py fr_FR-siwis-medium.onnx --speed 1.08     # → public/audio/base-point-keynote-voix.wav
+ffmpeg -i out/base-point-keynote-16x9.mp4 -i public/audio/base-point-keynote-voix.wav \
+       -map 0:v -map 1:a -c:v copy -c:a aac -b:a 256k out/base-point-keynote-16x9-voix.mp4   # sans refaire l'image
+```
+
 ## Vidéo investisseurs (2 min, 16:9)
 
 Composition `Investor16x9` (`src/investor/`) : ton sobre, rythme lent, vrais écrans de l'app filmés dans un
