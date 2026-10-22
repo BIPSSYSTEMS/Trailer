@@ -1,0 +1,555 @@
+{
+  "icons": [
+    {
+      "id": "money-gun",
+      "file": "icons/money-gun.png"
+    },
+    {
+      "id": "trading-keyboard",
+      "file": "icons/trading-keyboard.png"
+    },
+    {
+      "id": "candlesticks",
+      "file": "icons/candlesticks.png"
+    },
+    {
+      "id": "oil-barrel",
+      "file": "icons/oil-barrel.png"
+    },
+    {
+      "id": "gold-bars",
+      "file": "icons/gold-bars.png"
+    },
+    {
+      "id": "eagle",
+      "file": "icons/eagle.png"
+    },
+    {
+      "id": "bull",
+      "file": "icons/bull.png"
+    },
+    {
+      "id": "bear",
+      "file": "icons/bear.png"
+    },
+    {
+      "id": "coin-stack",
+      "file": "icons/coin-stack.png"
+    },
+    {
+      "id": "vault",
+      "file": "icons/vault.png"
+    },
+    {
+      "id": "rocket",
+      "file": "icons/rocket.png"
+    },
+    {
+      "id": "opening-bell",
+      "file": "icons/opening-bell.png"
+    },
+    {
+      "id": "briefcase",
+      "file": "icons/briefcase.png"
+    },
+    {
+      "id": "globe",
+      "file": "icons/globe.png"
+    },
+    {
+      "id": "calculator",
+      "file": "icons/calculator.png"
+    },
+    {
+      "id": "piggy-bank",
+      "file": "icons/piggy-bank.png"
+    },
+    {
+      "id": "trophy",
+      "file": "icons/trophy.png"
+    },
+    {
+      "id": "diamond",
+      "file": "icons/diamond.png"
+    },
+    {
+      "id": "central-banker",
+      "file": "icons/central-banker.png"
+    },
+    {
+      "id": "politician",
+      "file": "icons/politician.png"
+    },
+    {
+      "id": "central-banker-woman",
+      "file": "icons/central-banker-woman.png"
+    },
+    {
+      "id": "trader-shouting",
+      "file": "icons/trader-shouting.png"
+    },
+    {
+      "id": "analyst",
+      "file": "icons/analyst.png"
+    },
+    {
+      "id": "banker",
+      "file": "icons/banker.png"
+    },
+    {
+      "id": "broker",
+      "file": "icons/broker.png"
+    },
+    {
+      "id": "bull-mascot",
+      "file": "icons/bull-mascot.png"
+    },
+    {
+      "id": "bear-mascot",
+      "file": "icons/bear-mascot.png"
+    },
+    {
+      "id": "oil-rig",
+      "file": "icons/oil-rig.png"
+    },
+    {
+      "id": "bull-vs-bear",
+      "file": "icons/bull-vs-bear.png"
+    },
+    {
+      "id": "ticker",
+      "file": "icons/ticker.png"
+    },
+    {
+      "id": "scales",
+      "file": "icons/scales.png"
+    },
+    {
+      "id": "rolling-coin",
+      "file": "icons/rolling-coin.png"
+    },
+    {
+      "id": "rate-clock",
+      "file": "icons/rate-clock.png"
+    },
+    {
+      "id": "bank",
+      "file": "icons/bank.png"
+    },
+    {
+      "id": "money-printer",
+      "file": "icons/money-printer.png"
+    },
+    {
+      "id": "liquidity-tap",
+      "file": "icons/liquidity-tap.png"
+    },
+    {
+      "id": "wheat",
+      "file": "icons/wheat.png"
+    },
+    {
+      "id": "coffee",
+      "file": "icons/coffee.png"
+    },
+    {
+      "id": "solar-panel",
+      "file": "icons/solar-panel.png"
+    },
+    {
+      "id": "wind-turbine",
+      "file": "icons/wind-turbine.png"
+    },
+    {
+      "id": "overflowing-barrel",
+      "file": "icons/overflowing-barrel.png"
+    },
+    {
+      "id": "black-swan",
+      "file": "icons/black-swan.png"
+    },
+    {
+      "id": "parachute",
+      "file": "icons/parachute.png"
+    },
+    {
+      "id": "lifebuoy",
+      "file": "icons/lifebuoy.png"
+    },
+    {
+      "id": "popcorn",
+      "file": "icons/popcorn.png"
+    },
+    {
+      "id": "tank",
+      "file": "icons/tank.png"
+    },
+    {
+      "id": "plane",
+      "file": "icons/plane.png"
+    },
+    {
+      "id": "flag-us",
+      "file": "icons/flag-us.png"
+    },
+    {
+      "id": "flag-eu",
+      "file": "icons/flag-eu.png"
+    },
+    {
+      "id": "flag-jp",
+      "file": "icons/flag-jp.png"
+    },
+    {
+      "id": "flag-uk",
+      "file": "icons/flag-uk.png"
+    },
+    {
+      "id": "flag-cn",
+      "file": "icons/flag-cn.png"
+    },
+    {
+      "id": "trader-cheering",
+      "file": "icons/trader-cheering.png"
+    },
+    {
+      "id": "fired-trader",
+      "file": "icons/fired-trader.png"
+    },
+    {
+      "id": "cash-barrel",
+      "file": "icons/cash-barrel.png"
+    },
+    {
+      "id": "treasure-chest",
+      "file": "icons/treasure-chest.png"
+    },
+    {
+      "id": "coin-arc",
+      "file": "icons/coin-arc.png"
+    },
+    {
+      "id": "checkpoint-flag",
+      "file": "icons/checkpoint-flag.png"
+    },
+    {
+      "id": "key",
+      "file": "icons/key.png"
+    },
+    {
+      "id": "umbrella",
+      "file": "icons/umbrella.png"
+    },
+    {
+      "id": "lightbulb",
+      "file": "icons/lightbulb.png"
+    },
+    {
+      "id": "medal",
+      "file": "icons/medal.png"
+    },
+    {
+      "id": "hourglass",
+      "file": "icons/hourglass.png"
+    }
+  ],
+  "characters": {
+    "man": [
+      {
+        "outfit": "hoodie",
+        "file": "characters/man-hoodie.png"
+      },
+      {
+        "outfit": "shirt",
+        "file": "characters/man-shirt.png"
+      },
+      {
+        "outfit": "blazer",
+        "file": "characters/man-blazer.png"
+      },
+      {
+        "outfit": "suit",
+        "file": "characters/man-suit.png"
+      },
+      {
+        "outfit": "three-piece",
+        "file": "characters/man-three-piece.png"
+      },
+      {
+        "outfit": "coat",
+        "file": "characters/man-coat.png"
+      }
+    ],
+    "woman": [
+      {
+        "outfit": "hoodie",
+        "file": "characters/woman-hoodie.png"
+      },
+      {
+        "outfit": "shirt",
+        "file": "characters/woman-shirt.png"
+      },
+      {
+        "outfit": "blazer",
+        "file": "characters/woman-blazer.png"
+      },
+      {
+        "outfit": "suit",
+        "file": "characters/woman-suit.png"
+      },
+      {
+        "outfit": "three-piece",
+        "file": "characters/woman-three-piece.png"
+      },
+      {
+        "outfit": "coat",
+        "file": "characters/woman-coat.png"
+      }
+    ]
+  },
+  "portraits": {
+    "man": {
+      "hoodie": {
+        "neutral": "portraits/man-hoodie-neutral.png",
+        "smile": "portraits/man-hoodie-smile.png",
+        "laugh": "portraits/man-hoodie-laugh.png",
+        "surprise": "portraits/man-hoodie-surprise.png",
+        "serious": "portraits/man-hoodie-serious.png",
+        "worried": "portraits/man-hoodie-worried.png",
+        "sad": "portraits/man-hoodie-sad.png",
+        "angry": "portraits/man-hoodie-angry.png",
+        "confident": "portraits/man-hoodie-confident.png"
+      },
+      "shirt": {
+        "neutral": "portraits/man-shirt-neutral.png",
+        "smile": "portraits/man-shirt-smile.png",
+        "laugh": "portraits/man-shirt-laugh.png",
+        "surprise": "portraits/man-shirt-surprise.png",
+        "serious": "portraits/man-shirt-serious.png",
+        "worried": "portraits/man-shirt-worried.png",
+        "sad": "portraits/man-shirt-sad.png",
+        "angry": "portraits/man-shirt-angry.png",
+        "confident": "portraits/man-shirt-confident.png"
+      },
+      "blazer": {
+        "neutral": "portraits/man-blazer-neutral.png",
+        "smile": "portraits/man-blazer-smile.png",
+        "laugh": "portraits/man-blazer-laugh.png",
+        "surprise": "portraits/man-blazer-surprise.png",
+        "serious": "portraits/man-blazer-serious.png",
+        "worried": "portraits/man-blazer-worried.png",
+        "sad": "portraits/man-blazer-sad.png",
+        "angry": "portraits/man-blazer-angry.png",
+        "confident": "portraits/man-blazer-confident.png"
+      },
+      "suit": {
+        "neutral": "portraits/man-suit-neutral.png",
+        "smile": "portraits/man-suit-smile.png",
+        "laugh": "portraits/man-suit-laugh.png",
+        "surprise": "portraits/man-suit-surprise.png",
+        "serious": "portraits/man-suit-serious.png",
+        "worried": "portraits/man-suit-worried.png",
+        "sad": "portraits/man-suit-sad.png",
+        "angry": "portraits/man-suit-angry.png",
+        "confident": "portraits/man-suit-confident.png"
+      },
+      "three-piece": {
+        "neutral": "portraits/man-three-piece-neutral.png",
+        "smile": "portraits/man-three-piece-smile.png",
+        "laugh": "portraits/man-three-piece-laugh.png",
+        "surprise": "portraits/man-three-piece-surprise.png",
+        "serious": "portraits/man-three-piece-serious.png",
+        "worried": "portraits/man-three-piece-worried.png",
+        "sad": "portraits/man-three-piece-sad.png",
+        "angry": "portraits/man-three-piece-angry.png",
+        "confident": "portraits/man-three-piece-confident.png"
+      },
+      "coat": {
+        "neutral": "portraits/man-coat-neutral.png",
+        "smile": "portraits/man-coat-smile.png",
+        "laugh": "portraits/man-coat-laugh.png",
+        "surprise": "portraits/man-coat-surprise.png",
+        "serious": "portraits/man-coat-serious.png",
+        "worried": "portraits/man-coat-worried.png",
+        "sad": "portraits/man-coat-sad.png",
+        "angry": "portraits/man-coat-angry.png",
+        "confident": "portraits/man-coat-confident.png"
+      }
+    },
+    "woman": {
+      "hoodie": {
+        "neutral": "portraits/woman-hoodie-neutral.png",
+        "smile": "portraits/woman-hoodie-smile.png",
+        "laugh": "portraits/woman-hoodie-laugh.png",
+        "surprise": "portraits/woman-hoodie-surprise.png",
+        "serious": "portraits/woman-hoodie-serious.png",
+        "worried": "portraits/woman-hoodie-worried.png",
+        "sad": "portraits/woman-hoodie-sad.png",
+        "angry": "portraits/woman-hoodie-angry.png",
+        "confident": "portraits/woman-hoodie-confident.png"
+      },
+      "shirt": {
+        "neutral": "portraits/woman-shirt-neutral.png",
+        "smile": "portraits/woman-shirt-smile.png",
+        "laugh": "portraits/woman-shirt-laugh.png",
+        "surprise": "portraits/woman-shirt-surprise.png",
+        "serious": "portraits/woman-shirt-serious.png",
+        "worried": "portraits/woman-shirt-worried.png",
+        "sad": "portraits/woman-shirt-sad.png",
+        "angry": "portraits/woman-shirt-angry.png",
+        "confident": "portraits/woman-shirt-confident.png"
+      },
+      "blazer": {
+        "neutral": "portraits/woman-blazer-neutral.png",
+        "smile": "portraits/woman-blazer-smile.png",
+        "laugh": "portraits/woman-blazer-laugh.png",
+        "surprise": "portraits/woman-blazer-surprise.png",
+        "serious": "portraits/woman-blazer-serious.png",
+        "worried": "portraits/woman-blazer-worried.png",
+        "sad": "portraits/woman-blazer-sad.png",
+        "angry": "portraits/woman-blazer-angry.png",
+        "confident": "portraits/woman-blazer-confident.png"
+      },
+      "suit": {
+        "neutral": "portraits/woman-suit-neutral.png",
+        "smile": "portraits/woman-suit-smile.png",
+        "laugh": "portraits/woman-suit-laugh.png",
+        "surprise": "portraits/woman-suit-surprise.png",
+        "serious": "portraits/woman-suit-serious.png",
+        "worried": "portraits/woman-suit-worried.png",
+        "sad": "portraits/woman-suit-sad.png",
+        "angry": "portraits/woman-suit-angry.png",
+        "confident": "portraits/woman-suit-confident.png"
+      },
+      "three-piece": {
+        "neutral": "portraits/woman-three-piece-neutral.png",
+        "smile": "portraits/woman-three-piece-smile.png",
+        "laugh": "portraits/woman-three-piece-laugh.png",
+        "surprise": "portraits/woman-three-piece-surprise.png",
+        "serious": "portraits/woman-three-piece-serious.png",
+        "worried": "portraits/woman-three-piece-worried.png",
+        "sad": "portraits/woman-three-piece-sad.png",
+        "angry": "portraits/woman-three-piece-angry.png",
+        "confident": "portraits/woman-three-piece-confident.png"
+      },
+      "coat": {
+        "neutral": "portraits/woman-coat-neutral.png",
+        "smile": "portraits/woman-coat-smile.png",
+        "laugh": "portraits/woman-coat-laugh.png",
+        "surprise": "portraits/woman-coat-surprise.png",
+        "serious": "portraits/woman-coat-serious.png",
+        "worried": "portraits/woman-coat-worried.png",
+        "sad": "portraits/woman-coat-sad.png",
+        "angry": "portraits/woman-coat-angry.png",
+        "confident": "portraits/woman-coat-confident.png"
+      }
+    }
+  },
+  "npcs": {
+    "buddy": {
+      "neutral": "portraits/npc/buddy-neutral.png",
+      "smile": "portraits/npc/buddy-smile.png",
+      "laugh": "portraits/npc/buddy-laugh.png",
+      "surprise": "portraits/npc/buddy-surprise.png",
+      "serious": "portraits/npc/buddy-serious.png",
+      "worried": "portraits/npc/buddy-worried.png",
+      "sad": "portraits/npc/buddy-sad.png",
+      "angry": "portraits/npc/buddy-angry.png",
+      "confident": "portraits/npc/buddy-confident.png"
+    },
+    "colleague": {
+      "neutral": "portraits/npc/colleague-neutral.png",
+      "smile": "portraits/npc/colleague-smile.png",
+      "laugh": "portraits/npc/colleague-laugh.png",
+      "surprise": "portraits/npc/colleague-surprise.png",
+      "serious": "portraits/npc/colleague-serious.png",
+      "worried": "portraits/npc/colleague-worried.png",
+      "sad": "portraits/npc/colleague-sad.png",
+      "angry": "portraits/npc/colleague-angry.png",
+      "confident": "portraits/npc/colleague-confident.png"
+    },
+    "client": {
+      "neutral": "portraits/npc/client-neutral.png",
+      "smile": "portraits/npc/client-smile.png",
+      "laugh": "portraits/npc/client-laugh.png",
+      "surprise": "portraits/npc/client-surprise.png",
+      "serious": "portraits/npc/client-serious.png",
+      "worried": "portraits/npc/client-worried.png",
+      "sad": "portraits/npc/client-sad.png",
+      "angry": "portraits/npc/client-angry.png",
+      "confident": "portraits/npc/client-confident.png"
+    },
+    "director": {
+      "neutral": "portraits/npc/director-neutral.png",
+      "smile": "portraits/npc/director-smile.png",
+      "laugh": "portraits/npc/director-laugh.png",
+      "surprise": "portraits/npc/director-surprise.png",
+      "serious": "portraits/npc/director-serious.png",
+      "worried": "portraits/npc/director-worried.png",
+      "sad": "portraits/npc/director-sad.png",
+      "angry": "portraits/npc/director-angry.png",
+      "confident": "portraits/npc/director-confident.png"
+    }
+  },
+  "cars": [
+    {
+      "id": "sports-yellow",
+      "file": "cars/sports-yellow.png"
+    },
+    {
+      "id": "roadster-azure",
+      "file": "cars/roadster-azure.png"
+    },
+    {
+      "id": "coupe-burgundy",
+      "file": "cars/coupe-burgundy.png"
+    },
+    {
+      "id": "convertible-coral",
+      "file": "cars/convertible-coral.png"
+    },
+    {
+      "id": "sedan-graphite",
+      "file": "cars/sedan-graphite.png"
+    },
+    {
+      "id": "sedan-slate",
+      "file": "cars/sedan-slate.png"
+    },
+    {
+      "id": "sedan-classic-cream",
+      "file": "cars/sedan-classic-cream.png"
+    },
+    {
+      "id": "wagon-petrol-blue",
+      "file": "cars/wagon-petrol-blue.png"
+    },
+    {
+      "id": "suv-compact-copper",
+      "file": "cars/suv-compact-copper.png"
+    },
+    {
+      "id": "suv-offroad-ivory",
+      "file": "cars/suv-offroad-ivory.png"
+    },
+    {
+      "id": "pickup-brick-red",
+      "file": "cars/pickup-brick-red.png"
+    },
+    {
+      "id": "compact-retro-mustard",
+      "file": "cars/compact-retro-mustard.png"
+    },
+    {
+      "id": "city-car-sage",
+      "file": "cars/city-car-sage.png"
+    },
+    {
+      "id": "microcar-electric-mint",
+      "file": "cars/microcar-electric-mint.png"
+    }
+  ],
+  "brand": {
+    "appIcon": "brand/app-icon.png"
+  }
+}

@@ -1,0 +1,161 @@
+{
+ "btc-dark": {
+  "dark": true
+ },
+ "btc": {
+  "dark": false
+ },
+ "carriere-2": {
+  "dark": false
+ },
+ "carriere": {
+  "dark": false
+ },
+ "carte-exports": {
+  "dark": false
+ },
+ "carte-fra": {
+  "dark": false
+ },
+ "carte": {
+  "dark": false
+ },
+ "entretien-blanc": {
+  "dark": false
+ },
+ "entretien-question": {
+  "dark": false
+ },
+ "entretien-reponse": {
+  "dark": false
+ },
+ "entretien": {
+  "dark": false
+ },
+ "examens": {
+  "dark": false
+ },
+ "fiche-fra-clients": {
+  "dark": false
+ },
+ "fiche-fra": {
+  "dark": false
+ },
+ "hedge-2": {
+  "dark": false
+ },
+ "hedge-labo-2": {
+  "dark": false
+ },
+ "hedge-labo-3": {
+  "dark": false
+ },
+ "hedge-labo": {
+  "dark": false
+ },
+ "hedge-lecon-2": {
+  "dark": false
+ },
+ "hedge-lecon": {
+  "dark": false
+ },
+ "hedge": {
+  "dark": false
+ },
+ "home-dark": {
+  "dark": true
+ },
+ "home": {
+  "dark": false
+ },
+ "lecon-bips": {
+  "dark": false
+ },
+ "lecon-buddy": {
+  "dark": false
+ },
+ "lecon-concept": {
+  "dark": false
+ },
+ "lecon-courbe": {
+  "dark": false
+ },
+ "lecon-quiz-choix": {
+  "dark": false
+ },
+ "lecon-quiz-reponse": {
+  "dark": false
+ },
+ "lecon-quiz": {
+  "dark": false
+ },
+ "marches": {
+  "dark": false
+ },
+ "options-chaine-dark": {
+  "dark": true
+ },
+ "options-chaine": {
+  "dark": false
+ },
+ "options-fiche-2": {
+  "dark": false
+ },
+ "options-fiche-3": {
+  "dark": false
+ },
+ "options-fiche": {
+  "dark": false
+ },
+ "options": {
+  "dark": false
+ },
+ "ordre-oco": {
+  "dark": false
+ },
+ "ordre": {
+  "dark": false
+ },
+ "parcours": {
+  "dark": false
+ },
+ "portefeuille": {
+  "dark": false
+ },
+ "scn-brief": {
+  "dark": false
+ },
+ "scn-fin": {
+  "dark": false
+ },
+ "scn-lecture-1": {
+  "dark": false
+ },
+ "scn-lecture-2": {
+  "dark": false
+ },
+ "scn-lecture-3": {
+  "dark": false
+ },
+ "scn-liste": {
+  "dark": false
+ },
+ "scn-parti-choix": {
+  "dark": false
+ },
+ "scn-parti": {
+  "dark": false
+ },
+ "scn-revele-2": {
+  "dark": false
+ },
+ "scn-revele": {
+  "dark": false
+ },
+ "simulation-2": {
+  "dark": false
+ },
+ "simulation": {
+  "dark": false
+ }
+}

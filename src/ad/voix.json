@@ -1,0 +1,48 @@
+{
+  "_note": "Voix off de la pub Gen Z. t = seconde de début ; text = ce que dit la voix (certains mots écrits comme ils se prononcent) ; show = sous-titre affiché quand il diffère.",
+  "lines": [
+    {
+      "t": 0.05,
+      "text": "Personne t'a jamais appris la bourse ?"
+    },
+    {
+      "t": 1.95,
+      "text": "Normal. Maintenant, y'a Base Point."
+    },
+    {
+      "t": 4.7,
+      "text": "Des leçons de cinq minutes. Un couiz. Et tu montes de niveau.",
+      "show": "Des leçons de 5 minutes. Un quiz. Et tu montes de niveau."
+    },
+    {
+      "t": 8.5,
+      "text": "Tu achètes, tu vends, sur les vrais prix… avec de l'argent fictif."
+    },
+    {
+      "t": 11.95,
+      "text": "Avant de cliquer, l'appli simule mille futurs.",
+      "show": "Avant de cliquer, l'appli simule 1 000 futurs."
+    },
+    {
+      "t": 15.05,
+      "text": "Tu rejoues une vraie crise, à l'aveugle."
+    },
+    {
+      "t": 17.45,
+      "text": "Tu prends parti… puis la vérité tombe."
+    },
+    {
+      "t": 20.5,
+      "text": "Et tu passes de stagiaire à Managing Director."
+    },
+    {
+      "t": 23.55,
+      "text": "Base Point. Les marchés n'attendent pas. Toi non plus."
+    },
+    {
+      "t": 26.8,
+      "text": "Bientôt sur aïe-ô-èss et Android.",
+      "show": "Bientôt sur iOS et Android."
+    }
+  ]
+}

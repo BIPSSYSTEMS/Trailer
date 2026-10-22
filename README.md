@@ -1,1 +1,125 @@
-# Trailer
+# Trailer BIPS
+
+Trailer de lancement de l'app BIPS (≈ 46 s, 128 BPM), rendu image par image avec Remotion + React Three Fiber.
+Tout est dérivé de `useCurrentFrame()` : aucune animation en temps réel, aléatoire seedé, rendu identique à chaque passe.
+
+## Keynote Base Point (≈ 3 min, 16:9) — vidéo de présentation actuelle
+
+Composition `Keynote16x9` (`src/keynote/`) : style keynote Apple (fond noir, Inter Display, un seul accent vert),
+iPhone 3D en CSS (`IPhone.tsx` : cadre titane, épaisseur, boutons, Dynamic Island, dos), vrais écrans de la
+dernière version de l'app. Textes dans `src/keynote/copy.ts`, durées dans `src/keynote/timeline.ts`.
+Planche de marque : composition `BasePointLogo`.
+
+```sh
+npm run capture:keynote -- <export web de l'app> <dossier brut>   # captures 390 × 756 pt
+python3 scripts/frame_screens.py <dossier brut>                     # → public/keynote-screens/ (format iPhone)
+npm run audio:keynote                                               # → public/audio/base-point-keynote.wav
+npm run render:keynote                                              # → out/base-point-keynote-16x9.mp4
+```
+
+Voix off (texte et minutage dans `src/keynote/voix.json`, voix neuronale française Piper, la musique baisse sous la voix) :
+
+```sh
+pip install piper-tts   # voix : huggingface.co/rhasspy/piper-voices (fr_FR-siwis-medium, fr_FR-tom-medium, fr_FR-upmc-medium)
+python3 scripts/make_voiceover.py fr_FR-siwis-medium.onnx --speed 1.08     # → public/audio/base-point-keynote-voix.wav
+ffmpeg -i out/base-point-keynote-16x9.mp4 -i public/audio/base-point-keynote-voix.wav \
+       -map 0:v -map 1:a -c:v copy -c:a aac -b:a 256k out/base-point-keynote-16x9-voix.mp4   # sans refaire l'image
+```
+
+## Pub Gen Z (30 s, 9:16) — TikTok / Reels / Shorts
+
+Composition `AdGenZ9x16` (`src/ad/`), brief complet dans `docs/prompt-pub-genz.md` : accroche en une seconde,
+sous-titres karaoké calés sur la voix, coupes au temps (120 BPM), stickers, doigt qui manipule l'app, iPhone 3D
+de la keynote. Découpage dans `src/ad/timeline.ts`, voix dans `src/ad/voix.json` (`show` = sous-titre affiché).
+
+```sh
+npm run audio:genz                                                   # musique → public/audio/base-point-genz.wav
+python3 scripts/make_voiceover.py fr_FR-siwis-medium.onnx --speed 0.92 --duck 0.45 \
+  --music public/audio/base-point-genz.wav --lines src/ad/voix.json \
+  --out public/audio/base-point-genz-voix.wav --timings src/ad/voix-timings.json   # voix + minutage des sous-titres
+node scripts/stills-genz.mjs out/planche.png 0.5 3 6 9 12 15 19 22 25 28           # planche de contrôle
+npm run render:genz                                                  # image seule → out/base-point-pub-genz-image.mp4
+ffmpeg -i out/base-point-pub-genz-image.mp4 -i public/audio/base-point-genz-voix.wav -map 0:v -map 1:a -c:v copy \
+       -af loudnorm=I=-14:TP=-1 -c:a aac -b:a 256k -shortest out/base-point-pub-genz-9x16.mp4          # avec voix
+ffmpeg -i out/base-point-pub-genz-image.mp4 -i public/audio/base-point-genz.wav -map 0:v -map 1:a -c:v copy \
+       -af loudnorm=I=-14:TP=-1 -c:a aac -b:a 256k -shortest out/base-point-pub-genz-9x16-sans-voix.mp4  # musique seule
+```
+
+Après un changement de texte dans `voix.json`, refaire la voix (le minutage des sous-titres suit tout seul).
+
+## Vidéo investisseurs (2 min, 16:9)
+
+Composition `Investor16x9` (`src/investor/`) : ton sobre, rythme lent, vrais écrans de l'app filmés dans un
+téléphone, une fonctionnalité par section. Textes dans `src/investor/copy.ts`, durées dans `src/investor/timeline.ts`.
+
+```sh
+npm run capture -- <export web de l'app>   # recapture les écrans → public/app-screens/
+npm run audio:investor                     # bande-son calme → public/audio/bips-investor.wav
+npm run render:investor                    # → out/bips-investisseurs-16x9.mp4
+```
+
+## Commandes
+
+```sh
+npm install
+npm run studio                 # prévisualisation interactive (Remotion Studio)
+npm run render:9x16            # → out/bips-trailer-9x16.mp4 (1080×1920, 60 fps)
+npm run render:16x9            # → out/bips-trailer-16x9.mp4 (1920×1080, 60 fps)
+npm run audio                  # régénère la bande-son synthétique public/audio/bips-trailer.wav
+scripts/stills.sh S4-career /tmp/st 60 240     # planche d'images clés d'une scène
+```
+
+Le rendu 3D passe par WebGL logiciel (`swangle`, voir `remotion.config.ts`) : il marche sans GPU, compter
+≈ 1,3 s par image sur 4 cœurs.
+
+## Où modifier quoi
+
+| Fichier | Contenu |
+| --- | --- |
+| `src/copy.ts` | **Tous les textes** à l'écran (modifiables sans toucher aux scènes) |
+| `src/timing.ts` | BPM, durée de chaque scène en temps, offset de la piste |
+| `src/audio/cues.ts` | Partition des SFX et sections musicales (en temps) |
+| `src/theme.ts` | Palette, police et métal du logo (`LOGO_METAL` : argent ou or) |
+| `src/scenes/S1Hook.tsx` … `S9Finale.tsx`, `SAppTouch.tsx` | Une composition par scène (aussi rendables seules : `S1-hook`, `S4-app`, …) |
+| `src/components/Touch.tsx` | Doigt animé (taps, glissés) pour les moments « app au toucher » |
+| `src/Trailer.tsx` | Composition maître (scènes bout à bout + audio), utilisée en 9:16 et 16:9 |
+
+### Changer de musique
+
+Déposer la piste dans `public/audio/`, régler `BPM` et `OFFSET_FRAMES` dans `src/timing.ts`, passer `MUSIC`
+à `false` dans `scripts/make-audio.ts` (on garde les SFX), relancer `npm run audio`, puis mixer la piste dans
+`src/Trailer.tsx` avec un second `<Audio>`.
+
+## Briques techniques
+
+- `src/components/Stage.tsx` : toile 3D commune (bloom, aberration chromatique, vignette, brouillard) et
+  **flou de mouvement caméra** calculé depuis la vitesse de la caméra entre deux images (directionnel pour les
+  whip pans, radial pour les dolly), coupé automatiquement sur les coupes franches.
+  En 16:9 le champ vertical vaut 80 % de celui du 9:16 (mêmes scènes, cadrage élargi).
+- `@remotion/motion-blur` (`CameraMotionBlur`) pour les sorties rapides des calques 2D (dialogues, entretien).
+- Matcaps « studio » précalculés (`scripts/make_matcaps.py`) pour l'or et le métal : rendu doré net et
+  bien moins coûteux qu'un PBR avec cubemap en rendu logiciel.
+- Logo BIPS extrudé à partir d'Inter Black (`scripts/make-typeface.mjs`), reflet balayé par shader.
+- Carte et globe en points dorés à partir de Natural Earth (`scripts/make_worldmap.py`, domaine public).
+- Aucun chiffre réel de marché : courbes stylisées sans graduations, valeurs de grecques illustratives.
+
+## Assets
+
+Les icônes, avatars et portraits viennent du dépôt de l'app (`BIPS-SYSTEME/assets`), où les planches
+3 × 3 ont déjà été découpées et détourées. Le script les convertit en PNG et les renomme pour le trailer :
+
+```sh
+pip install -r scripts/requirements.txt
+python3 scripts/prepare_assets.py import --app ../BIPS-SYSTEME   # copie + renommage → public/assets/
+python3 scripts/prepare_assets.py contact                        # → public/assets/contact-sheet.png
+```
+
+Pour une nouvelle planche brute (fond gris clair, gouttières détectées automatiquement, détourage rembg) :
+
+```sh
+python3 scripts/prepare_assets.py cut --kind icons --sheet planche.png --names a,b,c,d,e,f,g,h,i
+python3 scripts/prepare_assets.py cut --kind portraits --sheet planche.png --prefix man-hoodie
+python3 scripts/prepare_assets.py cut --kind characters --sheet avatar.png --names man-hoodie
+```
+
+`public/assets/manifest.json` liste tous les fichiers.
