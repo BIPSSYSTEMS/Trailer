@@ -2,7 +2,7 @@
 
 ## Version produite : motion design (`bps-tiktok-genz.mp4`)
 
-31,5 s, 1080×1920, 30 i/s, sans son (ajouter un son tendance dans TikTok ou Instagram au moment de publier). Fabriquée dans le Figma BPS, page « Trailer · TikTok Gen Z », avec la timeline d'animation de Figma et l'export MP4 : aucun crédit IA. Les écrans sont de vraies captures de l'app (version web, mode sombre, compte de démo « Léa », niveau 16, Managing Director).
+31,5 s, 1080×1920, 30 i/s, sans son (ajouter un son tendance dans TikTok ou Instagram au moment de publier). Fabriquée dans le Figma BPS, page « Trailer · TikTok Gen Z », avec la timeline d'animation de Figma et l'export MP4 : aucun crédit IA. Les écrans sont de vraies captures de l'app (version web, mode sombre, compte de démo « Léa », niveau 16, Managing Director), dans des téléphones avec barre de statut iPhone et Dynamic Island. Sur l'écran d'accueil, le logo chromé de l'app est remplacé au moment de la capture par le nouveau logo « BPS. » au point vert ; l'app elle-même affiche encore l'ancien.
 
 | Temps | Scène | Texte à l'écran |
 | --- | --- | --- |
