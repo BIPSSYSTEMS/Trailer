@@ -151,7 +151,8 @@ const Hook: React.FC = () => {
 };
 
 const HookWord: React.FC<{ w: Word; accent?: boolean }> = ({ w, accent }) => {
-  const at = w.t0 < 0.5 ? 0 : sec(w.t0) - 2; // le premier mot est là dès la première image
+  // Le premier mot est déjà posé sur la première image (elle sert souvent de couverture sur le fil).
+  const at = w.t0 < 0.5 ? -12 : sec(w.t0) - 2;
   const k = usePop(at, 420, 15);
   const f = useCurrentFrame();
   return (
