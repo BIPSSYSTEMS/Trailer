@@ -952,3 +952,22 @@ export const Keynote: React.FC = () => (
 );
 
 export const KEYNOTE_FRAMES = sec(KTOTAL);
+
+/** Version 2K (2560 × 1440) : la même mise en page 1920 × 1080, agrandie (texte et écrans redessinés à cette taille). */
+export const Keynote2K: React.FC = () => (
+  <AbsoluteFill style={{ background: K.bg }}>
+    <div
+      style={{
+        position: 'absolute',
+        left: 0,
+        top: 0,
+        width: 1920,
+        height: 1080,
+        transform: `scale(${2560 / 1920})`,
+        transformOrigin: 'top left',
+      }}
+    >
+      <Keynote />
+    </div>
+  </AbsoluteFill>
+);

@@ -14,7 +14,8 @@
     "capture": "node scripts/capture-app.mjs",
     "render:keynote": "remotion render Keynote16x9 out/base-point-keynote-16x9.mp4",
     "audio:keynote": "tsx scripts/make-audio-keynote.ts",
-    "capture:keynote": "node scripts/capture-keynote.mjs"
+    "capture:keynote": "node scripts/capture-keynote.mjs",
+    "render:keynote-2k": "remotion render Keynote2K out/base-point-keynote-2k.mp4"
   },
   "dependencies": {
     "@react-three/drei": "^10.7.9",
