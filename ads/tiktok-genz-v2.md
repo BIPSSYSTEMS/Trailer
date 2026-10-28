@@ -2,22 +2,22 @@
 
 ## Version produite : motion design (`bps-tiktok-genz.mp4`)
 
-34,3 s, 1080×1920, 30 i/s, sans son (ajouter un son tendance dans TikTok ou Instagram au moment de publier). Fabriquée dans le Figma BPS, page « Trailer · TikTok Gen Z », avec la timeline d'animation de Figma et l'export MP4 : aucun crédit IA. Mise à jour du 28/10/2026 sur l'app de `main` (commit `c3ec63c`) : toutes les captures refaites (nouveau logo « BPS. » de l'app, en-têtes de thème colorés, Marchés à 111 actifs, calque Macro et quêtes de la carte, questions d'entretien générées, version ordinateur). Les écrans sont de vraies captures de l'app (version web, mode sombre, compte de démo « Léa », niveau 16, Managing Director), dans des téléphones avec barre de statut iPhone et Dynamic Island, et un ordinateur portable pour la version web.
+34,3 s, 1080×1920, 30 i/s, sans son (ajouter un son tendance dans TikTok ou Instagram au moment de publier). Fabriquée dans le Figma BPS, page « Trailer · TikTok Gen Z », avec la timeline d'animation de Figma et l'export MP4 : aucun crédit IA. Mise à jour du 28/10/2026 sur l'app de `main` (commit `4ac8879`, fusion de la version publiée dans Expo Go) : toutes les captures refaites (barre d'onglets flottante Accueil, Parcours, Outils, Carrière ; page Outils ; Accueil avec le mot-symbole « bps. », la voiture du personnage et la pluie de billets ; en-têtes de thème colorés ; Marchés à 111 actifs ; calque Macro et quêtes de la carte ; questions d'entretien générées ; version ordinateur avec la section Outils), fin avec la nouvelle icône d'app et le nom « Base Point » de l'écran d'ouverture. Les écrans sont de vraies captures de l'app (version web, mode sombre, compte de démo « Léa », niveau 16, Managing Director, coupé bordeaux acheté au garage), dans des téléphones avec barre de statut iPhone et Dynamic Island, et un ordinateur portable pour la version web. La pluie de billets est une suite de 16 captures (environ 8 par seconde) déclenchée par le geste de tirage de l'Accueil, rejouée image par image dans le téléphone.
 
 | Temps | Scène | Texte à l'écran |
 | --- | --- | --- |
 | 0–2,8 s | Hook | « POV : t'as 21 ans et t'es Managing Director. (sur BPS.) » |
 | 2,8–5,6 s | Carrière | « Stagiaire → MD » · « Ta carrière monte avec ton XP. » |
 | 5,6–8,4 s | Parcours (Géopolitique, Options) | « 13 thèmes. 133 leçons. » · « Toutes sourcées. Quiz, étoiles, vies. » |
-| 8,4–11 s | Accueil | « Série. XP. Défi du jour. » · « Ton rituel finance, chaque jour. » |
-| 11–13,8 s | Marchés et fiche Nvidia | « Un compte fictif. 111 actifs. » · « Actions, ETF, crypto, devises, matières premières. » |
+| 8,4–11 s | Accueil et pluie de billets | « Série. XP. Défi du jour. » · « Et tire l'écran : il pleut des billets. » |
+| 11–13,8 s | Outils, Marchés, fiche Nvidia | « Un compte fictif. 111 actifs. » · « Actions, ETF, crypto, devises, matières premières. » |
 | 13,8–16,6 s | Simulation | « Avant de cliquer : 1 000 futurs possibles. » |
 | 16,6–19,4 s | Options, futures, swaps | « Options. Futures. Swaps. » · « Les produits des salles de marché. » |
 | 19,4–22,2 s | Scénarios (liste et dossier S6) | « Rejoue 14 vraies crises. » · « De 1987 à 2024. À l'aveugle, puis la vraie courbe. » |
 | 22,2–25 s | Carte macro, Quêtes, Hedge Lab | « Comprends le monde. » · « Carte macro, 118 quêtes et Hedge Lab. » |
 | 25–27,8 s | Entretien (question tirée au hasard) | « Le brainteaser de l'entretien ? Déjà fait. » · « 80 questions écrites, et de nouvelles à chaque tirage. » |
 | 27,8–30,6 s | Ordinateur | « Aussi sur ordinateur. » · « Toute l'app, en grand écran. » |
-| 30,6–34,3 s | Fin | Logo BPS. · « Apprends les marchés. Sans risquer un euro. » · mention légale |
+| 30,6–34,3 s | Fin | Icône d'app « BPS. » · « Base Point » (point du i en vert) · « Apprends les marchés. Sans risquer un euro. » · mention légale |
 
 Chiffres relevés dans le code de l'app le 28/10/2026 : 13 thèmes et 133 leçons (36 chapitres, aucun « Bientôt »), 111 actifs (11 historiques, 43 actions américaines, 26 européennes, 31 ETF), 14 scénarios (krach de 1987 au carry trade en yen de 2024), 118 quêtes de la carte, 80 questions d'entretien écrites et 31 gabarits générés. À revérifier si l'app change.
 
