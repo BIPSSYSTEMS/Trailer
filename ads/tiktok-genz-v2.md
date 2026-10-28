@@ -6,7 +6,7 @@
 
 | Temps | Scène | Texte à l'écran |
 | --- | --- | --- |
-| 0–2,8 s | Hook | « POV : t'as 21 ans et t'es Managing Director. » puis le logo « Base Point. » (point du i en vert, qui apparaît en pop) |
+| 0–2,8 s | Hook | « POV : t'as 21 ans et t'es Managing Director. » puis « sur Base Point. » en plus petit (« sur » en gris, logo Base Point avec le point du i en vert, qui apparaît en pop) |
 | 2,8–5,6 s | Carrière | « Stagiaire → MD » · « Ta carrière monte avec ton XP. » |
 | 5,6–8,4 s | Parcours (Géopolitique, Options) | « 13 thèmes. 133 leçons. » · « Toutes sourcées. Quiz, étoiles, vies. » · deux bandeaux qui défilent en sens opposés : les 13 thèmes, puis 28 titres de chapitres (pastille de la couleur du thème) |
 | 8,4–11 s | Accueil et pluie de billets | « Série. XP. Défi du jour. » · « Et tire l'écran : il pleut des billets. » |
