@@ -6,9 +6,9 @@
 
 | Temps | Scène | Texte à l'écran |
 | --- | --- | --- |
-| 0–2,8 s | Hook | « POV : t'as 21 ans et t'es Managing Director. (sur BPS.) » |
+| 0–2,8 s | Hook | « POV : t'as 21 ans et t'es Managing Director. » puis le logo « Base Point. » (point du i en vert, qui apparaît en pop) |
 | 2,8–5,6 s | Carrière | « Stagiaire → MD » · « Ta carrière monte avec ton XP. » |
-| 5,6–8,4 s | Parcours (Géopolitique, Options) | « 13 thèmes. 133 leçons. » · « Toutes sourcées. Quiz, étoiles, vies. » |
+| 5,6–8,4 s | Parcours (Géopolitique, Options) | « 13 thèmes. 133 leçons. » · « Toutes sourcées. Quiz, étoiles, vies. » · deux bandeaux qui défilent en sens opposés : les 13 thèmes, puis 28 titres de chapitres (pastille de la couleur du thème) |
 | 8,4–11 s | Accueil et pluie de billets | « Série. XP. Défi du jour. » · « Et tire l'écran : il pleut des billets. » |
 | 11–13,8 s | Outils, Marchés, fiche Nvidia | « Un compte fictif. 111 actifs. » · « Actions, ETF, crypto, devises, matières premières. » |
 | 13,8–16,6 s | Simulation | « Avant de cliquer : 1 000 futurs possibles. » |
@@ -16,12 +16,14 @@
 | 19,4–22,2 s | Scénarios (liste et dossier S6) | « Rejoue 14 vraies crises. » · « De 1987 à 2024. À l'aveugle, puis la vraie courbe. » |
 | 22,2–25 s | Carte macro, Quêtes, Hedge Lab | « Comprends le monde. » · « Carte macro, 118 quêtes et Hedge Lab. » |
 | 25–27,8 s | Entretien (question tirée au hasard) | « Le brainteaser de l'entretien ? Déjà fait. » · « 80 questions écrites, et de nouvelles à chaque tirage. » |
-| 27,8–30,6 s | Ordinateur | « Aussi sur ordinateur. » · « Toute l'app, en grand écran. » |
+| 27,8–30,6 s | Ordinateur | « Aussi sur ordinateur. » · « Toute l'app, en grand écran. » · badges « Disponible sur le Web », « Bientôt sur l'App Store », « Bientôt sur Google Play » avec leurs logos |
 | 30,6–34,3 s | Fin | Icône d'app « BPS. » · « Base Point » (point du i en vert) · « Apprends les marchés. Sans risquer un euro. » · mention légale |
 
 Chiffres relevés dans le code de l'app le 28/10/2026 : 13 thèmes et 133 leçons (36 chapitres, aucun « Bientôt »), 111 actifs (11 historiques, 43 actions américaines, 26 européennes, 31 ETF), 14 scénarios (krach de 1987 au carry trade en yen de 2024), 118 quêtes de la carte, 80 questions d'entretien écrites et 31 gabarits générés. À revérifier si l'app change.
 
 Pour modifier un texte ou une capture : changer le calque dans Figma puis réexporter le cadre « BPS · TikTok Gen Z · 9:16 » en MP4.
+
+Badges de l'App Store et de Google Play : ce ne sont pas les badges officiels (« Télécharger dans l'App Store », « Disponible sur Google Play »), qu'Apple et Google réservent aux apps déjà publiées dans leur boutique ; ce sont des pastilles BPS avec le logo de chaque plateforme. À remplacer par les badges officiels, téléchargés depuis les pages marketing d'Apple et de Google, une fois l'app en ligne.
 
 ## Version tournée (option, avec vidéo IA ou tournage réel)
 
